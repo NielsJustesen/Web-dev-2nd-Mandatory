@@ -1,13 +1,9 @@
 $(document).ready(function(){
-    console.log("DOM READY");
 
-    $("#searchBtn").on("click", function(){
-        console.log("WTF!");
-    })
     
     $("#searchBtn").on("click", function(e){
-        e.preventDetault();
-        console.log("clicked");
+        console.log("Clicked")
+        console.log("selected: " + $("#selector").val() + " SearchText: " + $("#searchText").val());
         $.ajax({
             url: "src/api.php",
             type: "GET",
@@ -17,17 +13,44 @@ $(document).ready(function(){
                 order: $("#selector").val(),
                 searchText: $("#searchText").val()
             },
-            success: function(data){
+            succes: function (param) {
+                const data = JSON.parse(param)
+                console.log(data);
+                console.log($("#selector").val())
+
+                console.log($("#searchText").val())
                 const holder = $("<div>");
-                data.forEach(element => {
-                    holder.append($("<p>").attr("class", "track").text(element['Name']));
+                $.each(data, function (indexInArray, valueOfElement) { 
+                    console.log(indexInArray + " " + valueOfElement)
+                    // holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
                 });
+                
                 $("body").append(holder)
+
+            },
+            fail: function(param){
+                console.log("FAILED")
+                console.log(param)
             }
         });
+        // .done(function(data){
+        //     console.log(data);
+        //     console.log($("#selector").val())
 
+        //     console.log($("#searchText").val())
+        //     const holder = $("<div>");
+        //     $.each(data, function (indexInArray, valueOfElement) { 
+        //         console.log(indexInArray + " " + valueOfElement)
+        //         // holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
+        //     });
+            
+        //     $("body").append(holder)
 
-        console.log($("#selector").val())
-    })
-
+        // })
+        // .fail(function(e){
+        //     console.log("Request Failed")
+        //     console.log(e)
+        // });
+            
+    });
 });

@@ -1,5 +1,8 @@
 <?php
 
+    header('Content-Type:application/json');
+    header('Accept-version:v1');
+    
     if(isset($_POST['entity']) && isst($_POST['action'])){
 
         $entity = $_POST['entity'];
@@ -13,7 +16,7 @@
                 switch ($action) {
                     case 'search':
                             if(isset($_POST['searchText']) && isset($_POST['order'])){
-                                echo json_encode($track->BrowseTracks($_POST['order'],$_POST['searchText']));
+                                echo json_encode($track->BrowseTracks($_POST['order'], $_POST['searchText']));
                             }
                         break;
                     
