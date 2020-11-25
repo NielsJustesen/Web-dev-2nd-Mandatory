@@ -12,17 +12,6 @@
 
         function Read($id){
 
-
-
-            $query = <<<'SQL'
-                SELECT movie_id, title, overview, release_date, runtime
-                FROM movie 
-                WHERE movie_id = ?;
-            SQL;
-
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$id]);
-            $results = $stmt->fetch();
         }
 
         function BrowseTracks($order, $name){
@@ -42,26 +31,26 @@
                     $stmt->execute([$name]);
                     $results = $stmt->fetchAll();
 
-                    $this->pdo->disconnect();
+                    $this->disconnect();
 
                     return $results;
-                break;
+                    break;
 
                 case "composer":
                     $query = <<<'SQL'
                         SELECT track.Name, track.Composer
                         FROM track
-                        WHERE Composer LIKE  %?%;
+                        WHERE Composer LIKE  ?;
                     SQL;
 
                     $stmt = $this->pdo->prepare($query);
-                    $stmt->execute([$name]);
+                    $stmt->execute(["%".$name."%"]);
                     $results = $stmt->fetchAll();
 
-                    $this->pdo->disconnect();
+                    $this->disconnect();
 
                     return $results;
-                break;
+                    break;
 
                 case "genre":
                     $query = <<<'SQL'
@@ -76,10 +65,10 @@
                     $stmt->execute([$name]);
                     $results = $stmt->fetchAll();
 
-                    $this->pdo->disconnect()
+                    $this->disconnect();
 
                     return $results;
-                break;
+                    break;
 
                 case "artist":
                     $query = <<<'SQL'
@@ -96,10 +85,10 @@
                     $stmt->execute([$name]);
                     $results = $stmt->fetchAll();
 
-                    $this->pdo->disconnect()
+                    $this->disconnect();
 
                     return $results;
-                break;
+                    break;
 
                 default:
                     $query = <<<'SQL'
@@ -111,10 +100,10 @@
                     $stmt->execute([$name]);
                     $results = $stmt->fetchAll();
 
-                    $this->pdo->disconnect()
+                    $this->pdo->disconnect();
 
                     return $results;
-                break;
+                    break;
 
             }
         }
