@@ -1,7 +1,7 @@
 <?php
-    require_once("models/track.php");
-    require_once("models/album.php");
-    require_once("models/artist.php");
+    require_once("src/track.php");
+    require_once("src/album.php");
+    require_once("src/artist.php");
     // $track = new Track;
     // $album = new Album;
     // $artist = new Artist;
