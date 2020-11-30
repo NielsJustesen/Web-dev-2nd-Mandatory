@@ -2,27 +2,25 @@ $(document).ready(function(){
 
     
     $("#searchBtn").on("click", function(e){
-        console.log("Clicked")
-        console.log("selected: " + $("#selector").val() + " SearchText: " + $("#searchText").val());
+        e.preventDefault();
+
+        console.log("order: " + $("#selector").val());
+        console.log("searchText: " + $("#searchText").val());
         $.ajax({
             url: "src/api.php",
             type: "GET",
             data: {
-                entity: "track",
-                action: "search",
+                entity: "tracks",
                 order: $("#selector").val(),
                 searchText: $("#searchText").val()
             },
             succes: function (param) {
                 const data = JSON.parse(param)
                 console.log(data);
-                console.log($("#selector").val())
-
-                console.log($("#searchText").val())
                 const holder = $("<div>");
                 $.each(data, function (indexInArray, valueOfElement) { 
                     console.log(indexInArray + " " + valueOfElement)
-                    // holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
+                    holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
                 });
                 
                 $("body").append(holder)
