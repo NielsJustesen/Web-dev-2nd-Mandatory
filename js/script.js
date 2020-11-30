@@ -1,54 +1,31 @@
 $(document).ready(function(){
 
     
-    $("#searchBtn").on("click", function(e){
+    $("#loginBtn").on("submit", function(e){
         e.preventDefault();
 
-        console.log("order: " + $("#selector").val());
-        console.log("searchText: " + $("#searchText").val());
         $.ajax({
-            url: "src/api.php",
+            url: "http://localhost/Chinook-Abridged-rest-api/customers?email=" + $("#email").val(),
             type: "GET",
-            data: {
-                entity: "tracks",
-                order: $("#selector").val(),
-                searchText: $("#searchText").val()
-            },
-            succes: function (param) {
-                const data = JSON.parse(param)
+        })
+        .done(function(data){
+
+            // console.log(data);
+            formData = { "customerId": data["CustomerId"], "email": $("#email").val(), "enteredPassword": $("#pwd").val()};
+            // console.log(formData);
+            $.post("http://localhost/Chinook-Abridged-rest-api/login", formData)
+            .done(function (data) {
                 console.log(data);
-                const holder = $("<div>");
-                $.each(data, function (indexInArray, valueOfElement) { 
-                    console.log(indexInArray + " " + valueOfElement)
-                    holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
-                });
-                
-                $("body").append(holder)
+                $("#loggedin").attr("value",data);
 
-            },
-            fail: function(param){
-                console.log("FAILED")
-                console.log(param)
-            }
+            }).fail(function(e){
+                console.log("Login failed")
+            });
+        })
+        .fail(function(e){
+            console.log("Request Failed")
+            console.log(e)
         });
-        // .done(function(data){
-        //     console.log(data);
-        //     console.log($("#selector").val())
-
-        //     console.log($("#searchText").val())
-        //     const holder = $("<div>");
-        //     $.each(data, function (indexInArray, valueOfElement) { 
-        //         console.log(indexInArray + " " + valueOfElement)
-        //         // holder.append($("<p>").attr("class", "track").text(valueOfElement['Name']));
-        //     });
-            
-        //     $("body").append(holder)
-
-        // })
-        // .fail(function(e){
-        //     console.log("Request Failed")
-        //     console.log(e)
-        // });
             
     });
 });
