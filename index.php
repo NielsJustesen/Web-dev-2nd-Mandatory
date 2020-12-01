@@ -1,11 +1,6 @@
 <?php
-    session_start();
-    echo "<pre>";
-    $array = $_SESSION;
-    echo print_r($array);
-    echo "</pre>";
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: index.php");
+    if(isset($_POST["logout"])){
+        session_destroy();
     }
 ?>
 <!DOCTYPE html>
@@ -20,31 +15,22 @@
     </head>
     <body>
         <?php
-            if(!isset($_SESSION["loggedin"])){
+            if(!isset($_SESSION["customerId"])){
         ?>
-        <h2>Login</h2>
-        <form action="index.php" method="post">
-                <label>Username</label>
-                <input type="text" name="email" id="email">
-                <label>Password</label>
-                <input type="password" name="pwd" id="pwd" class="form-control">
-                <input type="submit" id="loginBtn" class="btn btn-primary" value="Login">
-                <span hidden name="status" id="loggedin" value></span>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
-        <?php
-                if(isset($_POST["status"])){
-                    $_SESSION["loggedin"] = $_POST["status"];
-                }
-            }
-            else if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        ?>
-            <form action="index.php" method="post">
-                <span hidden name="status" value=<?false?>></span>
-                <input type="submit" value="Log out">
+            <form action="login.php" method="post">
+                <input type="submit" value="Sign In">
             </form>
         <?php
-                $_SESSION["loggedin"] = $_POST["status"];
+            }
+            else {
+        ?>
+            <form action="index.php" method="POST">
+                <input type="submit" name="logout" value="Logout">
+            </form>
+            <form action="profile.php" method="POST">
+                <input type="submit" name="profile" value="Profile">
+            </form>
+        <?php
             }
         ?>
     </body>
