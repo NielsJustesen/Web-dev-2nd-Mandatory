@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
     $firstName = $_SESSION["firstName"];
     $lastName = $_SESSION["lastName"];
     $email = $_SESSION["email"];
@@ -21,6 +23,9 @@
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/script.js"></script>
     </head>
+    <?php
+        include_once("header.php");
+    ?>
     <body>
         <div class="profile">
             <span>First name: </span><span><?=$firstName?></span><br>
