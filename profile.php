@@ -2,6 +2,9 @@
     if(!isset($_SESSION)){
         session_start();
     }
+    echo "<pre>";
+    echo print_r($_SESSION);
+    echo "</pre>";
     $firstName = $_SESSION["firstName"];
     $lastName = $_SESSION["lastName"];
     $email = $_SESSION["email"];
@@ -28,19 +31,19 @@
     ?>
     <body>
         <div class="profile">
-            <span>First name: </span><span><?=$firstName?></span><br>
-            <span>Last name: </span><span><?=$lastName?></span><br>
-            <span>Email: </span><span><?=$email?></span><br>
-            <span>Company: </span><span><?=$company?></span><br>
-            <span>Phone: </span><span><?=$phone?></span><br>
-            <span>Fax: </span><span><?=$fax?></span><br>
+            <span>First name: <?=$firstName?></span><br>
+            <span>Last name: <?=$lastName?></span><br>
+            <span>Email: <?=$email?></span><br>
+            <span>Company: <?=$company?></span><br>
+            <span>Phone: <?=$phone?></span><br>
+            <span>Fax: <?=$fax?></span><br>
             <fieldset id="shipping">
                 <legend>Shipping</legend>
-                <span>Address: </span><span><?=$address?></span><br>
-                <span>City: </span><span><?=$city?></span><br>
-                <span>State: </span><span><?=$state?></span><br>
-                <span>Country: </span><span><?=$country?></span><br>
-                <span>Postal Code: </span><span><?=$postalCode?></span><br>
+                <span>Address: <?=$address?></span><br>
+                <span>City: <?=$city?></span><br>
+                <span>State: <?=$state?></span><br>
+                <span>Country: <?=$country?></span><br>
+                <span>Postal Code: <?=$postalCode?></span><br>
             </fieldset>
         </div>
     </body>

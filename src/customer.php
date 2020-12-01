@@ -6,11 +6,11 @@
         public $lastName;
         public $email;
         public $company;
-        public $address; 
-        public $city;    
-        public $state;   
-        public $country;    
-        public $postalCode;    
+        public $address;
+        public $city;
+        public $state;
+        public $country;
+        public $postalCode;
         public $phone;
         public $fax;
 
@@ -58,11 +58,11 @@
             $this->lastName = $result["LastName"];
             $this->email = $email;
             $this->company = $result["Company"];
-            $this->$address = $result["Address"];
-            $this->$city = $result["City"];
-            $this->$state = $result["State"];
-            $this->$country = $result["Country"];
-            $this->$postalCode = $result["PostalCode"];
+            $this->address = $result["Address"];
+            $this->city = $result["City"];
+            $this->state = $result["State"];
+            $this->country = $result["Country"];
+            $this->postalCode = $result["PostalCode"];
             $this->phone = $result["Phone"];
             $this->fax = $result["Fax"];
             $this->disconnect();

@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#signupForm {
+    display: inline-grid;
+    width: 25%;
+}
+
+#signupFieldset {
+    margin: 1em 1em 0em 1em;
+}
