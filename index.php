@@ -1,3 +1,10 @@
+<?php
+    if(isset($_POST["logout"])){
+        if(isset($_SESSION)){
+            session_destroy();
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,5 +18,11 @@
     <?php
         include_once("header.php");
     ?>
-  
+    <body>
+        <main>
+        </main>
+    </body>
+    <?php
+        include_once("footer.htm");
+    ?>
 </html>

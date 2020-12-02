@@ -49,10 +49,14 @@
                 <legend>Cart</legend>
                 <ol id="cartList">
                     <!-- TEST CART ITEM PLACEHOLDER -->
-                    <li class="cartItem"><span>Song name: </span><span class="songName" >Thunderstruck</span><span> Price: </span><span class="songPrice">0.99</span></li>
+                    <li class="cartItem"><span>Song name: </span><span class="songName" >Thunderstruck</span><span> Price: </span><span class="songPrice">0.99</span><span> Quantity: </span><input type="text" name="quantity"></li>
+
                 </ol>
                 <span id="totalPrice">Total: </span>
             </fieldset>
         </div>
+        <?php
+            include_once("footer.htm");
+        ?>
     </body>
 </html>

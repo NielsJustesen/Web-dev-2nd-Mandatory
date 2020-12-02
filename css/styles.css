@@ -17,18 +17,11 @@ body {
     display: inline-grid;
 }
 
-header {
-    display: flex;
-    border-style: solid;
-    border-radius: 9px;
-    margin: 1em 1em 1em 1em;
-}
-
 header input {
     margin: 1em 0em 1em 1em;
 }
 
-input {
+header input {
     color: white;
     border-radius: 9px;
     background-color: lightslategray;
@@ -47,10 +40,12 @@ fieldset {
 
 #profileInfo {
     width: 33%;
+    height: 1%;
 }
 
 #shipping {
     width: 85%;
+    margin: 0;
 }
 
 #cartList {
@@ -68,4 +63,23 @@ fieldset {
 .songName, .songPrice {
     background-color: chartreuse;
     border-radius: 5px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding: 5px 0 5px 0;
+    color: floralwhite;
+    background-color: darkred;
+    text-align: center;
+}
+
+header {
+    justify-content: center;
+    display: flex;
+    /* border-style: solid; */
+    /* border-radius: 9px; */
+    margin: 0em 0em 1em 0em;
+    background-color: darkred;
 }

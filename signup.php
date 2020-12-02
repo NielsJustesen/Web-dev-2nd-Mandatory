@@ -38,5 +38,8 @@
             <!-- <input type="password" name="confirmpassword" id="confirmpasswordtxt" > -->
             <input type="submit" value="Register" id="signupBtn">
         </fieldset>
+        <?php
+            include_once("footer.htm");
+        ?>
     </form>
 </body>

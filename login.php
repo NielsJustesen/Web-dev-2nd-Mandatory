@@ -50,6 +50,9 @@
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/script.js"></script>
     </head>
+    <?php
+        include_once("header.php");
+    ?>
     <body>
         <form action="login.php" method="POST">
             <fieldset>
@@ -62,5 +65,8 @@
                 <p>Not yet registered? <a href="signup.php">Sign up now</a>.</p>
             </fieldset>
         </form>
+        <?php
+            include_once("footer.htm");
+        ?>
     </body>
 </html>
