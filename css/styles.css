@@ -10,4 +10,5 @@ body {
 
 #signupFieldset {
     margin: 1em 1em 0em 1em;
+    display: inline-grid;
 }
