@@ -2,9 +2,6 @@
     if(!isset($_SESSION)){
         session_start();
     }
-    echo "<pre>";
-    echo print_r($_SESSION);
-    echo "</pre>";
     $firstName = $_SESSION["firstName"];
     $lastName = $_SESSION["lastName"];
     $email = $_SESSION["email"];
@@ -30,20 +27,31 @@
         include_once("header.php");
     ?>
     <body>
-        <div class="profile">
-            <span>First name: <?=$firstName?></span><br>
-            <span>Last name: <?=$lastName?></span><br>
-            <span>Email: <?=$email?></span><br>
-            <span>Company: <?=$company?></span><br>
-            <span>Phone: <?=$phone?></span><br>
-            <span>Fax: <?=$fax?></span><br>
-            <fieldset id="shipping">
-                <legend>Shipping</legend>
-                <span>Address: <?=$address?></span><br>
-                <span>City: <?=$city?></span><br>
-                <span>State: <?=$state?></span><br>
-                <span>Country: <?=$country?></span><br>
-                <span>Postal Code: <?=$postalCode?></span><br>
+        <div id="profile">
+            <fieldset id="profileInfo">
+                <legend>Profile</legend>    
+                <span>First name: <?=$firstName?></span><br>
+                <span>Last name: <?=$lastName?></span><br>
+                <span>Email: <?=$email?></span><br>
+                <span>Company: <?=$company?></span><br>
+                <span>Phone: <?=$phone?></span><br>
+                <span>Fax: <?=$fax?></span><br>
+                <fieldset id="shipping">
+                    <legend>Shipping</legend>
+                    <span>Address: <?=$address?></span><br>
+                    <span>City: <?=$city?></span><br>
+                    <span>State: <?=$state?></span><br>
+                    <span>Country: <?=$country?></span><br>
+                    <span>Postal Code: <?=$postalCode?></span><br>
+                </fieldset>
+            </fieldset>
+            <fieldset id="cart">
+                <legend>Cart</legend>
+                <ol id="cartList">
+                    <!-- TEST CART ITEM PLACEHOLDER -->
+                    <li class="cartItem"><span>Song name: </span><span class="songName" >Thunderstruck</span><span> Price: </span><span class="songPrice">0.99</span></li>
+                </ol>
+                <span id="totalPrice">Total: </span>
             </fieldset>
         </div>
     </body>

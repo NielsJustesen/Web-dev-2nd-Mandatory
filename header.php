@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <header>
+    <form action="browse.php" method="POST">
+        <input type="submit" name="browse" value="Browse Music">
+    </form>
     <?php
         if(!isset($_SESSION["customerId"])){
     ?>

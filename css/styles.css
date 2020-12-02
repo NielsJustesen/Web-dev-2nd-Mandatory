@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #signupForm {
     display: inline-grid;
     width: 25%;
@@ -11,4 +15,57 @@ body {
 #signupFieldset {
     margin: 1em 1em 0em 1em;
     display: inline-grid;
+}
+
+header {
+    display: flex;
+    border-style: solid;
+    border-radius: 9px;
+    margin: 1em 1em 1em 1em;
+}
+
+header input {
+    margin: 1em 0em 1em 1em;
+}
+
+input {
+    color: white;
+    border-radius: 9px;
+    background-color: lightslategray;
+}
+
+fieldset {
+    border-style: solid;
+    border-radius: 9px;
+    margin: 1em 1em 1em 1em;
+    border-color: black;
+}
+
+#profile {
+    display: flex;
+}
+
+#profileInfo {
+    width: 33%;
+}
+
+#shipping {
+    width: 85%;
+}
+
+#cartList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cartItem {
+    background: blanchedalmond;
+    border-radius: 5px;
+    padding: 2px 4px 2px 4px;
+}
+
+.songName, .songPrice {
+    background-color: chartreuse;
+    border-radius: 5px;
 }
