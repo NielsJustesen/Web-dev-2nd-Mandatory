@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+main {
+    background-color: whitesmoke;
+}
+
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -25,6 +29,10 @@ header input {
     color: white;
     border-radius: 9px;
     background-color: lightslategray;
+}
+
+#info {
+    color: whitesmoke;
 }
 
 fieldset {
@@ -95,7 +103,16 @@ header {
 }
 
 th {
+    color: whitesmoke;
     text-align: left;
+}
+
+table {
+    background-color: darksalmon;
+}
+
+.tableItem {
+    background-color: blanchedalmond;
 }
 
 td {
@@ -114,5 +131,8 @@ td {
 }
 
 tr input {
-    width: 100%;
+    margin: 0em 32% 0em 32%;
+    width: 40%;
+    text-align: center;
+    border-style: outset;
 }

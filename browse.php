@@ -14,7 +14,7 @@
         ?>
         <main>
             <div id="searchByDiv">
-                <span>Search based on the selected value: </span>
+                <span id="info">Search based on the selected value: </span>
                 <select id="searchBy">
                     <option default>Select one</span>
                     <option value="track">Track</option>

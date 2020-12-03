@@ -114,12 +114,13 @@ $(document).ready(function(){
         $.each(data, function (indexInArray, valueOfElement) { 
 
             let minLength = valueOfElement.Milliseconds / 60000;
-            // let trimmed = toString(minLength.substring(0, 4));
+            let str = String(minLength).substr(0,4);
+            
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
             $("<td/>").attr("class", "trackName").text(valueOfElement.Name).appendTo(tr);
-            $("<td/>").attr("class", "trackLength").text(minLength).appendTo(tr);
-            $("<td/>").attr("class", "trackPrice").text(valueOfElement.UnitPrice).appendTo(tr);
-            $("<input/>").attr("type", "button").attr("value","X").attr("class", "addToCart").appendTo(tr);
+            $("<td/>").attr("class", "trackLength").text(str+"m").appendTo(tr);
+            $("<td/>").attr("class", "trackPrice").html("&dollar;"+valueOfElement.UnitPrice).appendTo(tr);
+            $("<input/>").attr("type", "image").attr("class", "addToCart").attr("src","imgs/cart.png").appendTo(tr);
             parent.append(tr);
         });
     }
