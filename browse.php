@@ -22,16 +22,6 @@
                     <option value="album">Album</option>
                 </select>
             </div>
-            <!-- <div id=browseDiv>
-            <span>Search tracks from: </span><br>
-                <select id="order">
-                    <option value="track">Track</option>
-                    <option value="artist">Artist</option>
-                    <option value="album">Album</option>
-                </select>
-                <input type="text" id="searchBy">
-                <input type="button" id="searchBtn" value="Search">
-            </div> -->
         </main>
         <?php
             include_once("footer.htm");

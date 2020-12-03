@@ -94,3 +94,25 @@ header {
     background-color: coral;
 }
 
+th {
+    text-align: left;
+}
+
+td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+#browseResults {
+    margin-left: 20em;
+    width: 50%;
+}
+
+.trackPrice {
+    text-align: right;
+}
+
+tr input {
+    width: 100%;
+}
