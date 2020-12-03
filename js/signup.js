@@ -10,7 +10,7 @@ $(document).ready(function(){
             data: formData
         })
         .done(function(response){
-            alert("User registered successfully!")
+            alert(response);
         })
         .fail(function(e){
             alert("User was not registered!")

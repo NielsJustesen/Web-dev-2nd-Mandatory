@@ -7,6 +7,9 @@
     <script src="js/signup.js"></script>
 </head>
 <body>
+    <?php
+        include_once("header.php");
+    ?>
     <form action="index.php" id="signupForm" method="POST">
         <fieldset id="signupFieldset">
             <legend>Signup Form</legend>
