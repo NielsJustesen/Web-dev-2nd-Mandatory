@@ -3,7 +3,6 @@ $(document).ready(function(){
     $("#signupForm").on("submit", function(e){
         // e.preventDefault();
         const formData = $("#signupForm").serialize();
-        alert(formData);
         $.ajax({
             url: "http://localhost/Chinook-Abridged-rest-api/customers",
             type: "POST",

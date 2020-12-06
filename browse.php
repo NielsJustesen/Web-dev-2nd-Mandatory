@@ -1,3 +1,20 @@
+<?php
+    if(isset($_POST["trackName"]) && isset($_POST["trackLength"]) && isset($_POST["trackPrice"])){
+        if(isset($_COOKIE["tracks"])){
+            $newTrack = ["Name"=>$_POST["trackName"], "Length"=>$_POST["trackLength"], "Price"=>$_POST["trackPrice"]];
+            $tracks = unserialize($_COOKIE["tracks"]);
+            array_push($tracks, $newTrack);
+            setcookie("tracks", serialize($tracks), time() + (86400 * 30), "/");
+        }elseif(!isset($_COOKIE["tracks"])){
+            $tracks = [];
+            setcookie("tracks", serialize($tracks), time() + (86400 * 30), "/");
+            $newTrack = ["Name"=>$_POST["trackName"], "Length"=>$_POST["trackLength"], "Price"=>$_POST["trackPrice"]];
+            $tracks = unserialize($_COOKIE["tracks"]);
+            array_push($tracks, $newTrack);
+            setcookie("tracks", serialize($tracks), time() + (86400 * 30), "/");
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
