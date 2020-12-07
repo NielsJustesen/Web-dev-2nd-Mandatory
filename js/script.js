@@ -180,7 +180,7 @@ $(document).ready(function(){
     
             //add to cart form
             const submitId = valueOfElement.Name+String(valueOfElement.Milliseconds);
-            let form = $("<form/>", {action:"profile.php",method:"POST",id:valueOfElement.Name});
+            let form = $("<form/>", {action:"browse.php" ,method:"POST",id:valueOfElement.Name});
             let name = $("<input/>", {type:"hidden", name:"trackName", value: valueOfElement.Name});
             let price = $("<input/>", {type:"hidden", name:"trackPrice",value:"$"+valueOfElement.UnitPrice});
             let submit = $("<input/>", {type: "image", alt:"submit", name:"addToCart", src:"imgs/cart.png", id:submitId})
