@@ -33,7 +33,7 @@
             <input type="submit" name="profile" value="Profile">
         </form>
         <form action="cookie.php" method="POST">
-            <input type="submit" name="cookie" value="Cookie Test">
+            <input type="submit" name="cookie" value="Tracks Cookie Test">
         </form>
     <?php
         }

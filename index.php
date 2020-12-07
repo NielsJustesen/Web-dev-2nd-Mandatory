@@ -1,9 +1,9 @@
 <?php
-    if(isset($_POST["logout"])){
-        if(isset($_SESSION)){
-            session_destroy();
-        }
-    }
+    // if(isset($_POST["logout"])){
+    //     if(isset($_SESSION)){
+    //         session_destroy();
+    //     }
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">

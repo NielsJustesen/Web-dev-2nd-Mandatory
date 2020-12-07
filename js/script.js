@@ -170,24 +170,28 @@ $(document).ready(function(){
         $.each(data, function (indexInArray, valueOfElement) { 
 
             let minLength = valueOfElement.Milliseconds / 60000;
-            let str = String(minLength).substr(0,4);
+            let minutes = String(minLength).substr(0,4);
             
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
             $("<td/>").attr("class", "trackName").text(valueOfElement.Name).appendTo(tr);
-            $("<td/>").attr("class", "trackLength").text(str+"min").appendTo(tr);
+            $("<td/>").attr("class", "trackLength").text(minutes+"min").appendTo(tr);
             $("<td/>").attr("class", "trackPrice").html("&dollar;"+valueOfElement.UnitPrice).appendTo(tr);
             let formTd = $("<td/>").attr("class", "cartSubmitBtn").appendTo(tr);
+    
             //add to cart form
-            let form = $("<form/>").attr("method", "POST").attr("action", "profile.php").appendTo(formTd);
-            let name = $("<p/>").attr("name", "trackName").attr("value", valueOfElement.Name).appendTo(form);
-            name.hidden = true;
-            let length = $("<p/>").attr("name", "trackLength").attr("value", str).appendTo(form);
-            length.hidden = true;
-            let price = $("<p/>").attr("name", "trackPrice").attr("value", valueOfElement.UnitPrice).appendTo(form);
-            price.hidden = true;
-            $("<input/>").attr("type", "image").attr("alt", "submit").attr("name", "addToCart").attr("src","imgs/cart.png").appendTo(form);
+            const submitId = valueOfElement.Name+String(valueOfElement.Milliseconds);
+            let form = $("<form/>", {action:"profile.php",method:"POST",id:valueOfElement.Name});
+            let name = $("<input/>", {type:"hidden", name:"trackName", value: valueOfElement.Name});
+            let price = $("<input/>", {type:"hidden", name:"trackPrice",value:"$"+valueOfElement.UnitPrice});
+            let submit = $("<input/>", {type: "image", alt:"submit", name:"addToCart", src:"imgs/cart.png", id:submitId})
+            form.append(name).append(price).append(submit)
+            form.appendTo(formTd);
 
-            // document.cookie = "testCookie=John Doe; expires=Mon, 7 Dec 2020 12:00:00 UTC";
+            // let form = $("<form/>").attr("action", "profile.php").attr("method", "POST").attr("id", valueOfElement.Name).appendTo(formTd);
+            // $("<input/>").attr("type", "hidden").attr("name", "trackName").attr("value", valueOfElement.Name).appendTo(form);
+            // $("<input/>").attr("type", "hidden").attr("name", "trackPrice").attr("value", "$"+valueOfElement.UnitPrice).appendTo(form);
+            // let submitBtn = $("<input/>").attr("type", "image").attr("alt", "submit").attr("name", "addToCart").attr("src","imgs/cart.png").attr("id", submitId).appendTo(form);
+
             parent.append(tr);
         });
     }

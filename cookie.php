@@ -1,5 +1,25 @@
 <?php
     include_once("header.php");
+?>
+<html>
+    <body>
+        <form action="cookie.php" method="POST">
+            <span>Track Name:</span>
+            <input type="text" name="trackName" required>
+            <span>Track Price:</span>
+            <input type="text" name="trackPrice" required>
+            <input type="submit" name="addToCart" value="Add to cart">
+        </form>
+
+        <form method="POST">
+            <span>Hardcoded values for easy test:</span>
+            <input type="hidden" name="trackName" value="For Those About To Rock (We Salute You)">
+            <input type="hidden" name="trackPrice" value="$0.99">
+            <input type="submit" name="addToCart" src="imgs/cart.png">
+        </form>
+    </body>
+</html>
+<?php
 
     $cookieName = "CustomerID".$_SESSION["customerId"];
     if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
@@ -18,12 +38,3 @@
     }
     echo "</pre>";
 ?>
-<html>
-    <body>
-        <form action="cookie.php" method="POST">
-            <input type="text" name="trackName" required>
-            <input type="text" name="trackPrice" required>
-            <input type="submit" name="addToCart" value="Add to cart">
-        </form>
-    </body>
-</html>
