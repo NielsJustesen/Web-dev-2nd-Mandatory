@@ -1,21 +1,17 @@
 <?php
     $validation = "false";
 
-    if (isset($_POST["logout"])) { 
-        session_destroy();
-
-    } else if (isset($_SESSION["customerId"])) {    
+    if (isset($_SESSION["customerId"])) {
         header('Location: index.php');
 
     } else if (isset($_POST["email"])) {
-        
         $userValidation = true;
 
         $email = $_POST["email"];
         $password = $_POST['pwd'];
-        require_once('src/customer.php');
+        require_once('src/user.php');
 
-        $customer = new Customer();
+        $customer = new User();
         $validUser = $customer->validate($email, $password);
         if ($validUser) {
             session_start();
@@ -37,12 +33,20 @@
                 $cart = array();
                 setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
             }
-            header('Location: index.php');
         }
-    } else if (isset($_POST["email"]) && isset($_POST["pwd"]) && $_POST["email"] === "admin" && $_POST["pws"] === "admin"){
-        session_start();
-        $_SESSION["role"] = "Admin";
+    } else if (isset($_POST["email"]) && isset($_POST["pwd"]) && $_POST["email"] === "admin" && $_POST["pwd"] === "admin"){
+        echo "ADMIN";
+        $user = new User();
+        $verify = $user->admin($_POST["email"], $_POST["pwd"]);
+        if($verify){
+            if(isset($_SESSION)){
+                // session_destroy();
+                session_start();
+                $_SESSION["role"] = "Admin";
+            }
+        }
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +62,7 @@
         include_once("header.php");
     ?>
     <body>
-        <form action="login.php" method="POST">
+        <form method="POST">
             <fieldset>
                 <legend>Login</legend>
                 <label>Username</label>

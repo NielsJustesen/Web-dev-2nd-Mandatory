@@ -1,10 +1,13 @@
 <?php
-    if(!isset($_SESSION)){
-        session_start();
+    
+    
+  
+    if(isset($_SESSION["role"])){
+        echo $_SESSION["role"];
     }
-    if(isset($_POST["logout"])){
-        session_destroy();
-    }
+    // if(isset($_POST["logout"])){
+    //     session_destroy();
+    // }
 ?>
 <head>
     <title>Chinook Abridged</title>
@@ -17,14 +20,14 @@
         <input type="submit" name="browse" value="Browse Music">
     </form>
     <?php
+        session_start();
         if(!isset($_SESSION["customerId"])){
     ?>
         <form action="login.php" method="post">
             <input type="submit" value="Sign In">
         </form>
     <?php
-        }
-        else {
+        }else{
     ?>
         <form action="index.php" method="POST">
             <input type="submit" name="logout" value="Logout">

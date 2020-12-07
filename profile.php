@@ -1,24 +1,15 @@
 <?php
+    session_start();
     if(isset($_SESSION["customerId"])){
-        echo "HELLO!";
-
         $cookieName = "CustomerID".$_SESSION["customerId"];
         if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
-            echo "HELLO!";
-
             if(isset($_COOKIE[$cookieName])){
-                echo "HELLO!";
                 $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"]];
                 $tracks = unserialize($_COOKIE[$cookieName]);
                 array_push($tracks, $newTrack);
                 setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
             }
         }
-    }
-?>
-<?php
-    if(!isset($_SESSION)){
-        session_start();
     }
     $firstName = $_SESSION["firstName"];
     $lastName = $_SESSION["lastName"];

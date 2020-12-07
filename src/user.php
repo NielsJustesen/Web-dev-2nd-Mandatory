@@ -1,6 +1,6 @@
 <?php 
 
-    class Customer {
+    class User {
         public $customerId;
         public $firstName;
         public $lastName;
@@ -69,7 +69,16 @@
             return (password_verify($password, $result['Password']));
         }
 
+        function admin($userName, $password){
+            $query =<<<'SQL'
+                SELECT password FROM admin WHERE password = ?
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $pwd = password_hash($password, PASSWORD_DEFAULT);
+            $stmt->execute([$pwd]);
+            $result = $stmt->fetch();
+            echo $pwd;
+            return password_verify($result, $pwd);
+        }
     }
-
-
 ?>

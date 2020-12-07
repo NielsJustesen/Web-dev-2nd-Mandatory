@@ -1,5 +1,6 @@
 <?php
     include_once("header.php");
+    session_start();
 ?>
 <html>
     <body>
@@ -31,10 +32,16 @@
         }
     }
     echo "customer cookie: " .$cookieName;
-    echo "<pre>";
     if(isset($_COOKIE[$cookieName])){
         $tracks = unserialize($_COOKIE[$cookieName]);
+        echo "<pre>";
         echo print_r($tracks);
+        echo "</pre>";
     }
-    echo "</pre>";
+
+    if(isset($_SESSION)){
+        echo "<pre>";
+        echo print_r($_SESSION);
+        echo "</pre>";
+    }
 ?>

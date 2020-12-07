@@ -187,11 +187,6 @@ $(document).ready(function(){
             form.append(name).append(price).append(submit)
             form.appendTo(formTd);
 
-            // let form = $("<form/>").attr("action", "profile.php").attr("method", "POST").attr("id", valueOfElement.Name).appendTo(formTd);
-            // $("<input/>").attr("type", "hidden").attr("name", "trackName").attr("value", valueOfElement.Name).appendTo(form);
-            // $("<input/>").attr("type", "hidden").attr("name", "trackPrice").attr("value", "$"+valueOfElement.UnitPrice).appendTo(form);
-            // let submitBtn = $("<input/>").attr("type", "image").attr("alt", "submit").attr("name", "addToCart").attr("src","imgs/cart.png").attr("id", submitId).appendTo(form);
-
             parent.append(tr);
         });
     }
