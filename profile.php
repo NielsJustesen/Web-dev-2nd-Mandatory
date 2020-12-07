@@ -26,7 +26,7 @@
     <?php
         include_once("header.php");
     ?>
-    <body>
+    <body id="profileBody">
         <div id="profile">
             <fieldset id="profileInfo">
                 <legend>Profile</legend>    
@@ -47,11 +47,27 @@
             </fieldset>
             <fieldset id="cart">
                 <legend>Cart</legend>
-                <ol id="cartList">
-                    <!-- TEST CART ITEM PLACEHOLDER -->
-                    <li class="cartItem"><span>Song name: </span><span class="songName" >Thunderstruck</span><span> Price: </span><span class="songPrice">0.99</span><span> Quantity: </span><input id="itemQuantity" type="text" name="quantity"></li>
-
-                </ol>
+                <table id="cartTable">
+                    <tr>
+                        <th>Song</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove?</th>
+                    </tr>
+                    <?php
+                        $cart = unserialize($_COOKIE["CustomerID".$_SESSION["customerId"]]);
+                        foreach ($cart as $cartItem){
+                    ?>
+                        <tr>
+                            <td class="songName" ><?=$cartItem["Name"]?></td>
+                            <td class="songPrice"><?=$cartItem["Price"]?></td>
+                            <td class="songQuantity"><input type="number" class="songQuantInput" min="1" name="quantity" value="1"></td>
+                            <td><input type="button" value="X"></td>
+                        </tr>
+                    <?php
+                        }
+                    ?>
+                </table>
                 <span id="totalPrice">Total: </span>
             </fieldset>
         </div>

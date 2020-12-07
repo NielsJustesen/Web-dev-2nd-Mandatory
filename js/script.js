@@ -181,7 +181,7 @@ $(document).ready(function(){
             let form = $("<form/>").attr("method", "POST").attr("action", "profile.php").appendTo(formTd);
             let name = $("<p/>").attr("name", "trackName").attr("value", valueOfElement.Name).appendTo(form);
             name.hidden = true;
-            let length = $("<p/>").attr("name", "trackLenght").attr("value", str).appendTo(form);
+            let length = $("<p/>").attr("name", "trackLength").attr("value", str).appendTo(form);
             length.hidden = true;
             let price = $("<p/>").attr("name", "trackPrice").attr("value", valueOfElement.UnitPrice).appendTo(form);
             price.hidden = true;

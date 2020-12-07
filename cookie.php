@@ -1,22 +1,29 @@
 <?php
-    // $tracks = [["name"=>"Song 1", "Length"=>"4min", "price"=>"$0.99"],
-    //             ["name"=>"Song 2", "Length"=>"5min", "price"=>"$0.99"],
-    //             ["name"=>"Song 3", "Length"=>"3min", "price"=>"$0.99"],
-    //             ["name"=>"Song 4", "Length"=>"7min", "price"=>"$0.99"],
-    //         ];
-    // setcookie("tracks", serialize($tracks), time() + (86400 * 30), "/");
+    include_once("header.php");
+
+    $cookieName = "CustomerID".$_SESSION["customerId"];
+    if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
+        if(isset($_COOKIE[$cookieName])){
+            $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"]];
+            $tracks = unserialize($_COOKIE[$cookieName]);
+            array_push($tracks, $newTrack);
+            setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
+        }
+    }
+    echo "customer cookie: " .$cookieName;
     echo "<pre>";
-    if(isset($_COOKIE)){
-        echo print_r( $_COOKIE);
+    if(isset($_COOKIE[$cookieName])){
+        $tracks = unserialize($_COOKIE[$cookieName]);
+        echo print_r($tracks);
     }
     echo "</pre>";
-
-    // $newTrack = ["name"=>"New Song", "Length"=>"7min", "price"=>"$0.99"];
-
-    // if(isset($_COOKIE["tracks"])){
-    //     $tracks = unserialize($_COOKIE["tracks"]);
-    //     array_push($tracks, $newTrack);
-    //     setcookie("tracks", serialize($tracks), time() + (86400 * 30), "/");
-    // }
-
 ?>
+<html>
+    <body>
+        <form action="cookie.php" method="POST">
+            <input type="text" name="trackName" required>
+            <input type="text" name="trackPrice" required>
+            <input type="submit" name="addToCart" value="Add to cart">
+        </form>
+    </body>
+</html>

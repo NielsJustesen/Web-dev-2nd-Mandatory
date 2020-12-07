@@ -32,7 +32,11 @@
             $_SESSION["postalCode"] = $customer->postalCode;
             $_SESSION["phone"] = $customer->phone;
             $_SESSION["fax"] = $customer->fax;
-
+            $cookieName = "CustomerID".$_SESSION["customerId"];
+            if(!isset($_COOKIE[$cookieName])){
+                $cart = array();
+                setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
+            }
             header('Location: index.php');
         }
     } else if (isset($_POST["email"]) && isset($_POST["pwd"]) && $_POST["email"] === "admin" && $_POST["pws"] === "admin"){
