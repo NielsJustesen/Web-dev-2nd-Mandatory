@@ -1,27 +1,21 @@
 <?php
-    session_start();
-    // if(isset($_SESSION["customerId"])){
-    //     $cookieName = "CustomerID".$_SESSION["customerId"];
-    //     if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
-    //         if(isset($_COOKIE[$cookieName])){
-    //             $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"]];
-    //             $tracks = unserialize($_COOKIE[$cookieName]);
-    //             array_push($tracks, $newTrack);
-    //             setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
-    //         }
-    //     }
-    // }
-    $firstName = $_SESSION["firstName"];
-    $lastName = $_SESSION["lastName"];
-    $email = $_SESSION["email"];
-    $company = $_SESSION["company"];
-    $phone = $_SESSION["phone"];
-    $fax = $_SESSION["fax"];
-    $address = $_SESSION["address"];
-    $city = $_SESSION["city"];
-    $state = $_SESSION["state"];
-    $country = $_SESSION["country"];
-    $postalCode = $_SESSION["postalCode"];
+    //Make delete cart item button from form, with post, to unset() the array index from the customer cookie
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    if (isset($_SESSION["customerId"])) {
+        $firstName = $_SESSION["firstName"];
+        $lastName = $_SESSION["lastName"];
+        $email = $_SESSION["email"];
+        $company = $_SESSION["company"];
+        $phone = $_SESSION["phone"];
+        $fax = $_SESSION["fax"];
+        $address = $_SESSION["address"];
+        $city = $_SESSION["city"];
+        $state = $_SESSION["state"];
+        $country = $_SESSION["country"];
+        $postalCode = $_SESSION["postalCode"];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +25,7 @@
         <title>Chinook Abridged</title>
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/profile.js"></script>
     </head>
     <?php
         include_once("header.php");
@@ -61,17 +56,17 @@
                         <th>Song</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Remove?</th>
+                        <th>Remove</th>
                     </tr>
                     <?php
                         $cart = unserialize($_COOKIE["CustomerID".$_SESSION["customerId"]]);
                         foreach ($cart as $cartItem){
                     ?>
-                        <tr>
+                        <tr class="cartRow">
                             <td class="songName" ><?=$cartItem["Name"]?></td>
                             <td class="songPrice"><?=$cartItem["Price"]?></td>
                             <td class="songQuantity"><input type="number" class="songQuantInput" min="1" name="quantity" value="1"></td>
-                            <td><input type="button" value="X"></td>
+                            <td class="songRemove"><input type="image" src="imgs/trash.png" class="removeCartItemBtn"></td>
                         </tr>
                     <?php
                         }

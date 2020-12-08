@@ -12,6 +12,10 @@ main {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+legend {
+    text-align: left;
+}
+
 #signupForm {
     display: inline-grid;
     width: 25%;
@@ -41,10 +45,13 @@ fieldset {
     border-radius: 9px;
     margin: 1em 1em 1em 1em;
     border-color: black;
+    display: grid;
+    /* transform-origin: center; */
 }
 
 #profile {
     display: flex;
+    justify-content: center;
 }
 
 #profileInfo {
@@ -82,8 +89,6 @@ footer {
 header {
     justify-content: center;
     display: flex;
-    /* border-style: solid; */
-    /* border-radius: 9px; */
     margin: 0em 0em 0em 0em;
     background-color: darkred;
 }
@@ -131,6 +136,7 @@ tr input {
     width: 40%;
     text-align: center;
     border-style: outset;
+    background-color: whitesmoke;
 }
 
 #profileBody {
@@ -144,14 +150,14 @@ tr input {
 
 .songName {
     margin: 0;
-    padding: 0;
-    padding-left: 1em;
+    padding: 0 1em 0 1em;
 }
 
 .songPrice {
     text-align: right;
     margin: 0;
-    padding: 0;
+    padding-right: 0.5em;
+    width: 13%;
 }
 
 .songQuantInput {
@@ -162,6 +168,11 @@ tr input {
 
 .songQuantity {
     text-align: -webkit-center;
+    width: 3%;
+}
+
+.songRemove {
+    width: 1%;
 }
 
 #profileInfo {
@@ -171,4 +182,99 @@ tr input {
 
 #profileInfo, #cart {
     background-color: coral;
+}
+
+.removeCartItemBtn {
+    background-color: whitesmoke;
+    margin: 0em 0% 0em 33%;
+    width: 33%;
+    text-align: center;
+    border-style: outset;
+}
+
+#role {
+    position: fixed;
+    left: 1%;
+}
+
+#adminBrowsing {
+    display: flex;
+    margin: 1em;
+}
+
+#adminTracks, #adminAlbums, #adminArtists {
+    width: 33%;
+    background-color: dodgerblue;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#adminTracks input, #adminAlbums input, #adminArtists input{
+    margin: 0 0 1em 1em;
+}
+
+.adminTrackItem, .adminAlbumItem, .adminArtistItem {
+    border-style: groove;
+    background-color: aliceblue;
+    color: black;
+}
+
+.changeBtn {
+    float: right;
+}
+
+h3 {
+    padding-left: 1em;
+}
+
+#adminArtists, #adminTracks, #adminAlbums {
+    color: whitesmoke;
+    margin-left: 1em;
+}
+
+
+#adminArtists p, #adminTracks p, #adminAlbums p {
+    margin-left: 1em;
+}
+
+.closeForm {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeForm:hover,
+.closeForm:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#trackModalContent, #albumModalContent, #artistModalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: -webkit-center;
+}
+
+#trackModal, #albumModal, #artistModal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+}
+
+#trackModalForm, #artistModalForm, #albumModalForm {
+    display: table-caption;
+    width: 30em;
 }

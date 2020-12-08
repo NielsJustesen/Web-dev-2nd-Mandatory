@@ -1,19 +1,28 @@
 <?php
-    $validation = "false";
-
     if (isset($_SESSION["customerId"])) {
-        header('Location: index.php');
-
+        header('Location: profile.php');
+    }
+    $validation = "false";
+    require_once('src/user.php');
+    
+    if (isset($_POST["email"]) && $_POST["email"] === "admin"){
+        $user = new User();
+        $verify = $user->admin($_POST["pwd"]);
+        if($verify){
+            session_start();
+            $_SESSION["role"] = "Admin";
+           
+        }
     } else if (isset($_POST["email"])) {
         $userValidation = true;
 
         $email = $_POST["email"];
         $password = $_POST['pwd'];
-        require_once('src/user.php');
 
         $customer = new User();
         $validUser = $customer->validate($email, $password);
         if ($validUser) {
+            
             session_start();
             $_SESSION["role"] = "Customer";
             $_SESSION["customerId"] = $customer->customerId;
@@ -34,19 +43,7 @@
                 setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
             }
         }
-    } else if (isset($_POST["email"]) && isset($_POST["pwd"]) && $_POST["email"] === "admin" && $_POST["pwd"] === "admin"){
-        echo "ADMIN";
-        $user = new User();
-        $verify = $user->admin($_POST["email"], $_POST["pwd"]);
-        if($verify){
-            if(isset($_SESSION)){
-                // session_destroy();
-                session_start();
-                $_SESSION["role"] = "Admin";
-            }
-        }
-    }
-
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">

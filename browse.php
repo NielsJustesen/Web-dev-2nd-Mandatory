@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
     if(isset($_SESSION["customerId"])){
         $cookieName = "CustomerID".$_SESSION["customerId"];
         if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){

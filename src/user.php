@@ -69,16 +69,14 @@
             return (password_verify($password, $result['Password']));
         }
 
-        function admin($userName, $password){
+        function admin($password){
             $query =<<<'SQL'
-                SELECT password FROM admin WHERE password = ?
+                SELECT Password FROM admin
             SQL;
             $stmt = $this->pdo->prepare($query);
-            $pwd = password_hash($password, PASSWORD_DEFAULT);
-            $stmt->execute([$pwd]);
+            $stmt->execute();
             $result = $stmt->fetch();
-            echo $pwd;
-            return password_verify($result, $pwd);
+            return password_verify($password, $result["Password"]);
         }
     }
 ?>

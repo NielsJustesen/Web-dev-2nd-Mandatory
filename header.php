@@ -1,14 +1,3 @@
-<?php
-    
-    
-  
-    if(isset($_SESSION["role"])){
-        echo $_SESSION["role"];
-    }
-    // if(isset($_POST["logout"])){
-    //     session_destroy();
-    // }
-?>
 <head>
     <title>Chinook Abridged</title>
     <meta charset="UTF-8">
@@ -16,29 +5,44 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <header>
+    
     <form action="browse.php" method="POST">
         <input type="submit" name="browse" value="Browse Music">
     </form>
     <?php
-        session_start();
-        if(!isset($_SESSION["customerId"])){
+        if(!isset($_SESSION["role"])){
     ?>
         <form action="login.php" method="post">
             <input type="submit" value="Sign In">
         </form>
     <?php
-        }else{
+        }
+        if (isset($_SESSION["customerId"])){
     ?>
-        <form action="index.php" method="POST">
-            <input type="submit" name="logout" value="Logout">
-        </form>
         <form action="profile.php" method="POST">
             <input type="submit" name="profile" value="Profile">
         </form>
-        <form action="cookie.php" method="POST">
-            <input type="submit" name="cookie" value="Tracks Cookie Test">
-        </form>
     <?php
+        }
+        if (isset($_SESSION["role"])) {
+            $user = "(Logged in as ".$_SESSION["role"].")";
+    ?>
+            <p id="role"><?=$user?></p>
+            <form action="index.php" method="POST">
+                <input type="submit" name="logout" value="Logout">
+            </form>
+    
+            <form action="cookie.php" method="POST">
+                <input type="submit" name="cookie" value="Tracks Cookie Test">
+            </form>
+            <?php
+            if($_SESSION["role"] === "Admin"){
+                ?>
+                    <form action="admin.php" method="POST">
+                        <input type="submit" name="admin" value="Administration">
+                    </form>
+                <?php
+            }
         }
     ?>
 </header>
