@@ -9,7 +9,7 @@ $(document).ready(function(){
             data: formData
         })
         .done(function(response){
-            alert(response);
+            alert(JSON.stringify(response));
         })
         .fail(function(e){
             alert("User was not registered!")

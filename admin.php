@@ -39,7 +39,7 @@
         <div id="trackModal" class="modal">
             <div id="trackModalContent">
                 <span class="closeForm">&times;</span>
-                <form id="trackModalForm">
+                <form id="trackModalForm" method="PUT">
                     <fieldset>
                         <legend>Edit song</legend>
                         <label>Name</label>
@@ -98,13 +98,13 @@
         <div id="albumModal" class="modal">
             <div id="albumModalContent">
                 <span class="closeForm">&times;</span>
-                <form id="albumModalForm">
+                <form id="albumModalForm" method="PUT">
                     <fieldset>
                         <legend>Edit Album</legend>
-                        <label>Artist</label>
-                        <input type="text" name="albumArtist" id="modalAlbumArtistName">
                         <label>Title</label>
-                        <input type="text" name="albumTitle" id="modalAlbumTitle">
+                        <input type="text" name="albumArtist" id="modalAlbumTitle">
+                        <label>ArtistId</label>
+                        <input type="text" name="albumTitle" id="modalAlbumArtistId">
                         <input type="submit" value="Update">
                     </fieldset>
                 </form>
@@ -113,12 +113,12 @@
         <div id="artistModal" class="modal">
             <div id="artistModalContent">
                 <span class="closeForm">&times;</span>
-                <form id="artistModalForm">
+                <form id="artistModalForm" method="PUT">
                     <fieldset>
                         <legend>Edit Artist</legend>
                         <label>Name</label>
-                        <input type="text" name="artistName" id="modalArtistName">
-                        <input type="submit" value="Update">
+                        <input type="text" name="name" id="modalArtistName">
+                        <input type="submit" id="updateArtistBtn" value="Update Artist">
                     </fieldset>
                 </form>
             </div>

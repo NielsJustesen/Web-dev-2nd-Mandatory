@@ -1,7 +1,4 @@
 <?php
-    // if(!isset($_SESSION)){
-    //     session_start();
-    // }
     if(isset($_POST["logout"])){
         if(isset($_SESSION)){
             session_destroy();
