@@ -24,15 +24,17 @@ $(document).ready(function(){
                 
                 let divItem = $("<div/>", {class:"adminTrackItem"});
 
-                let btn = $("<input>", {type:"button", value:"Change", class:"changeBtn"});
+                let changeBtn = $("<input>", {type:"image", src:"imgs/edit.png", class:"changeBtn"});
+                let deleteBtn = $("<input>", {type:"image", src:"imgs/delete.png", class:"deleteBtn"});
+
                 let name = $("<span/>", {text:"Track: "+valueOfElement["Name"]});
                 let composer = $("<span/>", {text:"Composer: "+valueOfElement["Composer"]});
                 let unitPrice = $("<span/>", {text:"Price: "+valueOfElement["UnitPrice"]});
 
-                divItem.append(btn).append(name).append($("<br>")).append(composer).append($("<br>")).append(unitPrice);
+                divItem.append(changeBtn).append(deleteBtn).append(name).append($("<br>")).append(composer).append($("<br>")).append(unitPrice);
                 divItem.appendTo(trackDiv);
                 // get the form for a track so that it can be modified and updated
-                btn.on("click", function(e){
+                changeBtn.on("click", function(e){
                     const modal = $("#trackModal");
                     $("#modalTrackName").val(valueOfElement["Name"]);
                     $("#modalTrackAlbumId").val(valueOfElement["AlbumId"]);
@@ -113,15 +115,16 @@ $(document).ready(function(){
                 
                 let divItem = $("<div/>", {class:"adminAlbumItem"});
 
-                let btn = $("<input>", {type:"button", value:"Change", class:"changeBtn"});
+                let changeBtn = $("<input>", {type:"image", src:"imgs/edit.png", class:"changeBtn"});
+                let deleteBtn = $("<input>", {type:"image", src:"imgs/delete.png", class:"deleteBtn"});
                 let name = $("<span/>", {text:"Artist: "+valueOfElement["Name"]}).append($("<br>"));
                 let title = $("<span/>", {text:"Title: "+valueOfElement["Title"]}).append($("<br>"));
 
-                divItem.append(btn).append(name).append($("<br>")).append(title).append($("<br>"))
+                divItem.append(changeBtn).append(deleteBtn).append(name).append($("<br>")).append(title).append($("<br>"))
                 divItem.appendTo(albumDiv);
 
                 // get the form for an album so that it can be modified and updated
-                btn.on("click", function(e){
+                changeBtn.on("click", function(e){
                     const modal = $("#albumModal");
                     $("#modalAlbumTitle").val(valueOfElement["Title"]);
                     $("#modalAlbumArtistId").val(valueOfElement["ArtistId"]);
@@ -185,13 +188,14 @@ $(document).ready(function(){
                 
                 let divItem = $("<div/>", {class:"adminArtistItem"});
 
-                let btn = $("<input>", {type:"button", value:"Change", class:"changeBtn"});
+                let changeBtn = $("<input>", {type:"image", src:"imgs/edit.png", class:"changeBtn"});
+                let deleteBtn = $("<input>", {type:"image", src:"imgs/delete.png", class:"deleteBtn"});
                 let name = $("<span/>", {text:"Name: "+valueOfElement["Name"]}).append($("<br>"));
-                divItem.append(btn).append(name).append($("<br>"));
+                divItem.append(changeBtn).append(deleteBtn).append(name).append($("<br>"));
                 divItem.appendTo(artistDiv);
 
                 // get the form for an artist so that it can be modified and updated
-                btn.on("click", function(e){
+                changeBtn.on("click", function(e){
                     const modal = $("#artistModal");
                     $("#modalArtistName").val(valueOfElement["Name"]);
                     modal[0].style.display = "block";
@@ -218,8 +222,8 @@ $(document).ready(function(){
                             alert("FAILED "+JSON.stringify(e));
                         });
                     });
+                    });
                 });
-            });
         }).fail(function(e){
             alert("FAILED "+JSON.stringify(e));
         });

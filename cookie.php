@@ -1,8 +1,6 @@
 <?php
+    session_start();
     include_once("header.php");
-    // if(!isset($_SESSION)){
-    //     session_start();
-    // }
 ?>
 <html>
     <body>
@@ -23,7 +21,6 @@
     </body>
 </html>
 <?php
-    session_start();
     $cookieName = "CustomerID".$_SESSION["customerId"];
     if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
         if(isset($_COOKIE[$cookieName])){
