@@ -3,20 +3,20 @@ $(document).ready(function(){
         const modal = $("#createTrackModal");
         modal[0].style.display = "block";
         $("#createTrackModalForm").on("submit", function(data){
+
             const formData = $("#createTrackModalForm").serialize();
-            console.log(formData);
 
             $.ajax({
                 url: "http://localhost/Chinook-Abridged-rest-api/tracks",
                 type: "POST",
                 data: formData,
-                succes: function(data){
-                    alert(data);
+                succes: function(response){
+                    alert(JSON.stringify(response));
                 },
-                failure: function(data){
-                    alert("failed");
+                error: function(response){
+                    alert("failed"+JSON.stringify(response));
                 }
-            })
+            });
         })
     })
 
@@ -24,18 +24,20 @@ $(document).ready(function(){
         const modal = $("#createAlbumModal");
         modal[0].style.display = "block";
         $("#createAlbumModalForm").on("submit", function(data){
+            
             const formData = $("#createAlbumModalForm").serialize();
+
             $.ajax({
                 url: "http://localhost/Chinook-Abridged-rest-api/albums",
                 type: "POST",
                 data: formData,
-                succes: function(data){
-                    alert(data);
+                succes: function(response){
+                    alert(JSON.stringify(response));
                 },
-                failure: function(data){
-                    alert("failed");
+                error: function(response){
+                    alert("failed"+JSON.stringify(response));
                 }
-            })
+            });
         })
     })
 
@@ -48,11 +50,11 @@ $(document).ready(function(){
                 url: "http://localhost/Chinook-Abridged-rest-api/artists",
                 type: "POST",
                 data: formData,
-                succes: function(data){
-                    alert(data);
+                succes: function(response){
+                    alert(JSON.stringify(response));
                 },
-                failure: function(data){
-                    alert("failed");
+                error: function(response){
+                    alert("failed"+JSON.stringify(response));
                 }
             })
         })

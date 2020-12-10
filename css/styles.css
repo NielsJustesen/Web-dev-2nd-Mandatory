@@ -16,6 +16,10 @@ legend {
     text-align: left;
 }
 
+label {
+    font-weight: bold;
+}
+
 #signupForm {
     display: inline-grid;
     width: 25%;
@@ -26,15 +30,7 @@ legend {
     display: inline-grid;
 }
 
-header input {
-    margin: 1em 0em 1em 1em;
-}
 
-header input {
-    color: white;
-    border-radius: 9px;
-    background-color: lightslategray;
-}
 
 #info {
     color: whitesmoke;
@@ -88,13 +84,6 @@ footer {
     color: floralwhite;
     background-color: darkred;
     text-align: center;
-}
-
-header {
-    justify-content: center;
-    display: flex;
-    margin: 0em 0em 0em 0em;
-    background-color: darkred;
 }
 
 #searchByDiv {
@@ -213,8 +202,24 @@ tr input {
     border-radius: 5px;
 }
 
-#adminTracks input, #adminAlbums input, #adminArtists input{
+.adminSearchTxt {
     margin: 0 0 1em 1em;
+    width: 33%;
+}
+
+.adminSearchBtn {
+    margin: 0 0 1em 1em;
+    width: 40%;
+}
+
+.adminCreateBtn {
+    width: 13%;
+    margin: 1em;
+    float: right;
+    background-color: ghostwhite;
+    border-radius: 11%;
+    padding: 3px;
+    border-style: solid;
 }
 
 .adminTrackItem, .adminAlbumItem, .adminArtistItem {
@@ -223,9 +228,8 @@ tr input {
     color: black;
 }
 
-.adminTrackItem input, .adminAlbumItem input, .adminArtistItem input {
-    margin: 0;
-    float: right;
+.adminTrackItem span, .adminAlbumItem span, .adminArtistItem span {
+    padding: 1em;
 }
 
 h3 {
@@ -239,7 +243,7 @@ h3 {
 
 
 #adminArtists p, #adminTracks p, #adminAlbums p {
-    margin-left: 1em;
+    margin: 0 0 1em 1em;
 }
 
 .closeForm {
@@ -268,7 +272,7 @@ h3 {
     width: 2em;
 }
 
-#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent {
+#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -278,7 +282,7 @@ h3 {
     border-radius: 20px;
 }
 
-#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal {
+#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -294,4 +298,22 @@ h3 {
 #trackModalForm, #artistModalForm, #albumModalForm, #createTrackModalForm, #createAlbumModalForm, #createArtistModalForm {
     display: table-caption;
     width: 30em;
+}
+
+#confirmTrackDelete, #confirmArtistDelete, #confirmAlbumDelete {
+    border-radius: 20px;
+    padding: 1em;
+    font-size: larger;
+    margin: 0 1em;
+    color: lawngreen;
+    background-color: black;
+}
+
+#cancelTrackDelete, #cancelArtistDelete, #cancelAlbumDelete {
+    border-radius: 20px;
+    padding: 1em;
+    font-size: larger;
+    margin: 0 1em;
+    color: red;
+    background-color: black;
 }

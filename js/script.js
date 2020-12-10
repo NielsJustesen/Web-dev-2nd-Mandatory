@@ -21,7 +21,7 @@ $(document).ready(function(){
                     
                     let selected = selector.val();
                     let txt = txtInput.val();
-
+                    console.log(txt)
                     let resultTable = $("<table/>").attr("id", "browseResults");
                     let tableHeaders = $("<tr/>").appendTo(resultTable);
                     $("<th/>").text("Name").appendTo(tableHeaders);

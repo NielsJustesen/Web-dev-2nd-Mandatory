@@ -59,17 +59,19 @@
         include_once("header.php");
     ?>
     <body>
-        <form method="POST">
-            <fieldset>
-                <legend>Login</legend>
-                <label>Username</label>
-                <input type="text" name="email" id="email">
-                <label>Password</label>
-                <input type="password" name="pwd" id="pwd">
-                <input type="submit" id="loginBtn" value="Login">
-                <p>Not yet registered? <a href="signup.php">Sign up now</a>.</p>
-            </fieldset>
-        </form>
+        <div>
+            <form method="POST">
+                <fieldset>
+                    <legend>Login</legend>
+                    <label>Username</label>
+                    <input type="text" name="email" id="email">
+                    <label>Password</label>
+                    <input type="password" name="pwd" id="pwd">
+                    <input type="submit" id="loginBtn" value="Login">
+                    <p>Not yet registered? <a href="signup.php">Sign up now</a>.</p>
+                </fieldset>
+            </form>
+        </div>
         <?php
             include_once("footer.htm");
         ?>

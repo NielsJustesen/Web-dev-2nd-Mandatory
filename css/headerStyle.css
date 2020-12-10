@@ -1,0 +1,13 @@
+header input {
+    margin: 1em 0em 1em 1em;
+    color: white;
+    border-radius: 9px;
+    background-color: lightslategray;
+}
+
+header {
+    justify-content: center;
+    display: flex;
+    margin: 0em 0em 0em 0em;
+    background-color: darkred;
+}

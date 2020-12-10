@@ -19,24 +19,30 @@
             <div id="adminBrowsing">
                 <div id="adminTracks" class="1_3">
                     <h3>Tracks</h3>
-                    <p>By artist name</p>
-                    <input type="text" id="adminTrackTxt">
-                    <input type="button" id="adminTracksBtn" value="Get Tracks">
-                    <input type="image" src="imgs/create.png" id="createTrackBtn">
+                    <input type="image" src="imgs/create.png" id="createTrackBtn" class="adminCreateBtn">
+                    <fieldset>
+                        <legend>By artist name</legend>
+                        <input type="text" id="adminTrackTxt" class="adminSearchTxt">
+                        <input type="button" id="adminTracksBtn" value="Get Tracks" class="adminSearchBtn">
+                    </fieldset>
                 </div>
                 <div id="adminAlbums" class="1_3">
                     <h3>Albums</h3>
-                    <p>By artist name</p>
-                    <input type="text" id="adminAlbumTxt">
-                    <input type="button" id="adminAlbumsBtn" value="Get Albums">
-                    <input type="image" src="imgs/create.png" id="createAlbumBtn">
+                    <input type="image" src="imgs/create.png" id="createAlbumBtn" class="adminCreateBtn">
+                    <fieldset>
+                        <legend>By artist name</legend>
+                        <input type="text" id="adminAlbumTxt" class="adminSearchTxt">
+                        <input type="button" id="adminAlbumsBtn" value="Get Albums" class="adminSearchBtn">
+                    </fieldset>
                 </div>
                 <div id="adminArtists" class="1_3">
                     <h3>Artists</h3>
-                    <p>By artist name</p>
-                    <input type="text" id="adminArtistTxt">
-                    <input type="button" id="adminArtistsBtn" value="Get Artists">
-                    <input type="image" src="imgs/create.png" id="createArtistBtn">
+                    <input type="image" src="imgs/create.png" id="createArtistBtn" class="adminCreateBtn">
+                    <fieldset>
+                        <legend>By artist name</legend>
+                        <input type="text" id="adminArtistTxt" class="adminSearchTxt">
+                        <input type="button" id="adminArtistsBtn" value="Get Artists" class="adminSearchBtn">
+                    </fieldset>
                 </div>
             </div>
         </main>
@@ -212,6 +218,24 @@
                         <input type="submit" value="Create Artist" class="createBtn"  id="artistFormSubmitBtn">
                     </fieldset>
                 </form>
+            </div>
+        </div>
+        <div id="confirmTrackModal" class="modal">
+            <div id="confirmTrackModalContent">
+                <input type="button" id="confirmTrackDelete" value="Confirm">
+                <input type="button" id="cancelTrackDelete" value="Cancel">
+            </div>
+        </div>
+        <div id="confirmAlbumModal" class="modal">
+            <div id="confirmAlbumModalContent">
+                <input type="button" id="confirmAlbumDelete" value="Confirm">
+                <input type="button" id="cancelAlbumDelete" value="Cancel">
+            </div>
+        </div>
+        <div id="confirmArtistModal" class="modal">
+            <div id="confirmArtistModalContent">
+                <input type="button" id="confirmArtistDelete" value="Confirm">
+                <input type="button" id="cancelArtistDelete" value="Cancel">
             </div>
         </div>
         <?php
