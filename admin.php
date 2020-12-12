@@ -23,7 +23,7 @@
                     <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminTrackTxt" class="adminSearchTxt">
-                        <input type="button" id="adminTracksBtn" value="Get Tracks" class="adminSearchBtn">
+                        <input type="image" src="imgs/search.png" id="adminTracksBtn" value="Get Tracks" class="adminSearchBtn">
                     </fieldset>
                 </div>
                 <div id="adminAlbums" class="1_3">
@@ -32,7 +32,7 @@
                     <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminAlbumTxt" class="adminSearchTxt">
-                        <input type="button" id="adminAlbumsBtn" value="Get Albums" class="adminSearchBtn">
+                        <input type="image" src="imgs/search.png" id="adminAlbumsBtn" value="Get Albums" class="adminSearchBtn">
                     </fieldset>
                 </div>
                 <div id="adminArtists" class="1_3">
@@ -41,7 +41,7 @@
                     <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminArtistTxt" class="adminSearchTxt">
-                        <input type="button" id="adminArtistsBtn" value="Get Artists" class="adminSearchBtn">
+                        <input type="image" src="imgs/search.png" id="adminArtistsBtn" value="Get Artists" class="adminSearchBtn">
                     </fieldset>
                 </div>
             </div>
@@ -222,20 +222,20 @@
         </div>
         <div id="confirmTrackModal" class="modal">
             <div id="confirmTrackModalContent">
-                <input type="button" id="confirmTrackDelete" value="Confirm">
-                <input type="button" id="cancelTrackDelete" value="Cancel">
+                <input type="image" src="imgs/accept.png" id="confirmTrackDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelTrackDelete" value="Cancel">
             </div>
         </div>
         <div id="confirmAlbumModal" class="modal">
             <div id="confirmAlbumModalContent">
-                <input type="button" id="confirmAlbumDelete" value="Confirm">
-                <input type="button" id="cancelAlbumDelete" value="Cancel">
+                <input type="image" src="imgs/accept.png" id="confirmAlbumDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelAlbumDelete" value="Cancel">
             </div>
         </div>
         <div id="confirmArtistModal" class="modal">
             <div id="confirmArtistModalContent">
-                <input type="button" id="confirmArtistDelete" value="Confirm">
-                <input type="button" id="cancelArtistDelete" value="Cancel">
+                <input type="image" src="imgs/accept.png" id="confirmArtistDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelArtistDelete" value="Cancel">
             </div>
         </div>
         <?php

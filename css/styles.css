@@ -98,15 +98,20 @@ fieldset input, fieldset select {
 
 .totalPrice {
     background-color: ghostwhite;
-    width: 97%;
+    width: 30%;
     padding: 5px;
     border-radius: 5px;
     border-style: solid;
     font-weight: bold;
+    height: 1em;
 }
 
 #invoicePrice {
     float: right;
+}
+
+#invoicePriceTxt {
+    float: left;
 }
 
 footer {
@@ -132,14 +137,17 @@ footer {
 th {
     color: whitesmoke;
     text-align: left;
+    background-color: darkred;
+    border-style: solid;
+    border-color: black;
 }
 
 table {
-    background-color: coral;
+    background-color: #002caa;
 }
 
 .tableItem {
-    background-color: blanchedalmond;
+    background-color: #96cdd9;
 }
 
 td {
@@ -149,8 +157,9 @@ td {
 }
 
 #browseResults {
-    margin-left: 20em;
+    margin: auto;
     width: 50%;
+    margin-bottom: 5em;
 }
 
 .trackPrice {
@@ -163,10 +172,6 @@ tr input {
     text-align: center;
     border-style: outset;
     background-color: whitesmoke;
-}
-
-#profileBody {
-    background-color: rgb(255, 102, 0);
 }
 
 #cartTable td {
@@ -202,12 +207,11 @@ tr input {
 }
 
 #profileInfo {
-    color: whitesmoke;
     font-size: larger;
 }
 
 #profileInfo, #cart {
-    background-color: coral;
+    background-color: #00d0ff;
 }
 
 .removeCartItemBtn {
@@ -236,8 +240,11 @@ tr input {
 }
 
 .adminSearchBtn {
-    margin: 0 0 1em 1em;
-    width: 8em;
+    padding: 5px;
+    width: 13%;
+    float: right;
+    border-style: solid;
+    border-radius: 5px;
 }
 
 .adminCreateBtn {
@@ -308,13 +315,16 @@ h3 {
 .editBtn {
     float: right;
     width: 3em;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 #purchaseBtn {
     width: 10em;
 }
 
-#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent, #editProfileModalContent, #editShippingModalContent, #editPasswordModalContent {
+#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent, #editProfileModalContent, #editShippingModalContent, #editPasswordModalContent, #purchaseModalContent {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -324,7 +334,7 @@ h3 {
     border-radius: 20px;
 }
 
-#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal, #editProfileModal, #editShippingModal, #editPasswordModal {
+#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal, #editProfileModal, #editShippingModal, #editPasswordModal, #purchaseModal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -362,4 +372,28 @@ h3 {
 
 .profileForm {
     display: inline-grid;
+}
+
+#invoiceSubmitForm {
+    display: inline-flex;
+    width: 100%;
+}
+
+#invoiceShipping {
+    width: 35%;
+    font-weight: bold;
+}
+
+#invoiceCart {
+    width: 65%;
+    height: fit-content;
+}
+
+#invoiceCart th {
+    color: whitesmoke;
+    background-color: black;
+}
+
+#invoiceCartTable {
+    background-color: white;
 }

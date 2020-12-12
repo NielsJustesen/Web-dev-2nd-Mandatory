@@ -2,27 +2,37 @@
 $(document).ready(function(){
 
     var totalPrice = $("#invoicePrice").text();
+
     var cartItems = [];
-    var ogPrices = [];
+    var ogPrices = [];  
     SetCart();
-    
+
     $(".removeCartItemBtn").on("click", function(e){
         let id = e.target.offsetParent.parentNode.id;
         window.location.href="profile.php?trackIndex="+id;
     });
 
     $("#purchaseBtn").on("click", function(e){
+        const modal = $("#purchaseModal");
+        modal[0].style.display = "block";
         console.log("Total price: " + TotalInvoicePrice(cartItems));
+
+        $("#cancelInvoiceBtn").on("click", function(e){
+            modal[0].style.display = "none";
+        })
     })
     
 
     $(".songQuantInput").on("change", function(e){
-        let id = e.target.offsetParent.parentNode.id;
-        quantity = parseFloat($("#songIndex"+id)[0].value);
+        // let id = e.target.offsetParent.parentNode.id;
+        let id = e.target.id;
+        quantity = parseFloat($("#"+id)[0].value);
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            if(i == id){
+            let index = id.substring(id.length-1,id.length)
+            if(i == index){
                 item.price = ogPrices[i] * quantity;
+                // console.log(item.price)
             }
         }
     })
@@ -118,8 +128,6 @@ $(document).ready(function(){
         cart = $(".cartRow");
         songNames = $(".songName");
 
-       
-
         for (let i = 0; i < cart.length; i++) {
             let cartItem = {};
             cartItems.push(cartItem);
@@ -140,8 +148,10 @@ $(document).ready(function(){
             }).fail(function(response){
                 console.log("failed" + response)
             })
-
         }
+
+        console.log(cartItems)
+        console.log(ogPrices)
     }
 
     function TotalInvoicePrice(array){

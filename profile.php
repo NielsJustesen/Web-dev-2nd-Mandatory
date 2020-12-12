@@ -75,17 +75,19 @@
                             setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
                         }
                         $totalprice = 0;
+                        $trackIndex = 0;
                         foreach ($cart as $key => $value){
                     ?>
                             <tr class="cartRow" id=<?=$key?>>
                                 <td class="songName" value=<?=$value["Name"]?>><?=$value["Name"]?></td>
                                 <td class="songPrice" id="songPrice<?=$key?>" value=<?=$value["Price"]?>><?=$value["Price"]?></td>
-                                <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$key?>" min="1" value=1  ></td>
+                                <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$trackIndex?>" min="1" value=1  ></td>
                                 <!-- oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" -->
                                 <td class="songRemove"><input type="image" src="imgs/trash.png" class="removeCartItemBtn"></td>
                             </tr>
                     <?php
                             $totalprice = $totalprice + $value["Price"];
+                            $trackIndex = $trackIndex + 1;
                         }
                     ?>
                 </table>
@@ -116,7 +118,7 @@
                 </form>
             </div>
         </div>
-        <div id="editShippingModal" classe="modal">
+        <div id="editShippingModal" class="modal">
             <div id="editShippingModalContent">
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="editShippingForm" method="PUT" class="profileForm">
@@ -134,13 +136,48 @@
                 </form>
             </div>
         </div>
-        <div id="editPasswordModal" classe="modal">
+        <div id="editPasswordModal" class="modal">
             <div id="editPasswordModalContent">
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="edittPasswordForm" method="PUT" class="profileForm">
                     <p>New Password</p>
                     <input type="password" name="password" id="newPassword">
                     <input type="submit" value="Confirm">
+                </form>
+            </div>
+        </div>
+        <div id="purchaseModal" class="model">
+            <div id="purchaseModalContent">
+                <span id="cancelInvoiceBtn" class="closeForm">&times;</span>
+                <form id="invoiceSubmitForm" action="profile.php" mathod="POST">
+                    <fieldset id="invoiceShipping">
+                        <legend>Invoice</legend>
+                        <p>Billing Address</p>
+                        <input type="text" id="invoiceBillingAddress">
+                        <p>Billing City</p>
+                        <input type="text" id="invoiceBillingCity">
+                        <p>Billing State</p>
+                        <input type="text" id="invoiceBillingState">
+                        <p>Billing Country</p>
+                        <input type="text" id="invoiceBillingCountry">
+                        <p>Billing Postal Code</p>
+                        <input type="text" id="invoiceBillingPostalCode"><br>
+                        <input type="submit">
+                    </fieldset>
+                    <fieldset id="invoiceCart">
+                        <legend>Cart</legend>
+                        <table id="invoiceCartTable">
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </table>
+                        <div class="totalPrice">
+                            <span id="invoicePriceTxt">Total Price</span>
+                            <span id="invoicePrice"></span>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
