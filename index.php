@@ -1,8 +1,8 @@
 <?php
     if(isset($_POST["logout"])){
         if(isset($_SESSION)){
-            session_destroy();
-        }
+                session_destroy();
+            }
     }
 ?>
 <!DOCTYPE html>

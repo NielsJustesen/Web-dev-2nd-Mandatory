@@ -175,14 +175,14 @@ $(document).ready(function(){
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
             $("<td/>").attr("class", "trackName").text(valueOfElement.Name).appendTo(tr);
             $("<td/>").attr("class", "trackLength").text(minutes+"min").appendTo(tr);
-            $("<td/>").attr("class", "trackPrice").html("&dollar;"+valueOfElement.UnitPrice).appendTo(tr);
+            $("<td/>").attr("class", "trackPrice").html(valueOfElement.UnitPrice).appendTo(tr);
             let formTd = $("<td/>").attr("class", "cartSubmitBtn").appendTo(tr);
     
             //add to cart form
             const submitId = valueOfElement.Name+String(valueOfElement.Milliseconds);
             let form = $("<form/>", {action:"browse.php" ,method:"POST",id:valueOfElement.Name});
             let name = $("<input/>", {type:"hidden", name:"trackName", value: valueOfElement.Name});
-            let price = $("<input/>", {type:"hidden", name:"trackPrice",value:"$"+valueOfElement.UnitPrice});
+            let price = $("<input/>", {type:"hidden", name:"trackPrice",value: valueOfElement.UnitPrice});
             let submit = $("<input/>", {type: "image", alt:"submit", name:"addToCart", src:"imgs/cart.png", id:submitId})
             form.append(name).append(price).append(submit)
             form.appendTo(formTd);

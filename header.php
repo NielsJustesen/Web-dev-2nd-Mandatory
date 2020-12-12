@@ -27,7 +27,7 @@
         if (isset($_SESSION["role"])) {
             $user = "(Logged in as ".$_SESSION["role"].")";
     ?>
-            <p id="role"><?=$user?></p>
+            <span id="role"><?=$user?></span>
             <form action="index.php" method="POST">
                 <input type="submit" name="logout" value="Logout">
             </form>

@@ -20,6 +20,19 @@ label {
     font-weight: bold;
 }
 
+#loginDiv {
+    inline-size: min-content;
+    margin: auto;
+}
+
+#loginForm {
+    
+}
+
+#loginFieldset {
+    
+}
+
 #signupForm {
     display: inline-grid;
     width: 25%;
@@ -30,8 +43,6 @@ label {
     display: inline-grid;
 }
 
-
-
 #info {
     color: whitesmoke;
 }
@@ -41,8 +52,17 @@ fieldset {
     border-radius: 9px;
     margin: 1em 1em 1em 1em;
     border-color: black;
-    display: grid;
+    /* display: grid; */
     /* transform-origin: center; */
+}
+
+#cart {
+    border-style: solid;
+    border-radius: 9px;
+    margin: 1em 1em 1em 1em;
+    border-color: black;
+    display: grid;
+    width: 60%;
 }
 
 fieldset input, fieldset select {
@@ -74,6 +94,19 @@ fieldset input, fieldset select {
     background: blanchedalmond;
     border-radius: 5px;
     padding: 2px 4px 2px 4px;
+}
+
+.totalPrice {
+    background-color: ghostwhite;
+    width: 97%;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    font-weight: bold;
+}
+
+#invoicePrice {
+    float: right;
 }
 
 footer {
@@ -185,11 +218,6 @@ tr input {
     border-style: outset;
 }
 
-#role {
-    position: fixed;
-    left: 1%;
-}
-
 #adminBrowsing {
     display: flex;
     margin: 1em;
@@ -204,12 +232,12 @@ tr input {
 
 .adminSearchTxt {
     margin: 0 0 1em 1em;
-    width: 33%;
+    width: 12em;
 }
 
 .adminSearchBtn {
     margin: 0 0 1em 1em;
-    width: 40%;
+    width: 8em;
 }
 
 .adminCreateBtn {
@@ -220,6 +248,11 @@ tr input {
     border-radius: 11%;
     padding: 3px;
     border-style: solid;
+}
+
+.adminFieldset {
+    width: 80%;
+    justify-items: center;
 }
 
 .adminTrackItem, .adminAlbumItem, .adminArtistItem {
@@ -272,7 +305,12 @@ h3 {
     width: 2em;
 }
 
-#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent {
+.editBtn {
+    float: right;
+    width: 3em;
+}
+
+#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent, #editProfileModalContent, #editShippingModalContent, #editPasswordModalContent {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -282,7 +320,7 @@ h3 {
     border-radius: 20px;
 }
 
-#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal {
+#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal, #editProfileModal, #editShippingModal, #editPasswordModal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -316,4 +354,8 @@ h3 {
     margin: 0 1em;
     color: red;
     background-color: black;
+}
+
+.profileForm {
+    display: inline-grid;
 }

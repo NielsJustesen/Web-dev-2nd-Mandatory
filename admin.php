@@ -20,7 +20,7 @@
                 <div id="adminTracks" class="1_3">
                     <h3>Tracks</h3>
                     <input type="image" src="imgs/create.png" id="createTrackBtn" class="adminCreateBtn">
-                    <fieldset>
+                    <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminTrackTxt" class="adminSearchTxt">
                         <input type="button" id="adminTracksBtn" value="Get Tracks" class="adminSearchBtn">
@@ -29,7 +29,7 @@
                 <div id="adminAlbums" class="1_3">
                     <h3>Albums</h3>
                     <input type="image" src="imgs/create.png" id="createAlbumBtn" class="adminCreateBtn">
-                    <fieldset>
+                    <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminAlbumTxt" class="adminSearchTxt">
                         <input type="button" id="adminAlbumsBtn" value="Get Albums" class="adminSearchBtn">
@@ -38,7 +38,7 @@
                 <div id="adminArtists" class="1_3">
                     <h3>Artists</h3>
                     <input type="image" src="imgs/create.png" id="createArtistBtn" class="adminCreateBtn">
-                    <fieldset>
+                    <fieldset class="adminFieldset">
                         <legend>By artist name</legend>
                         <input type="text" id="adminArtistTxt" class="adminSearchTxt">
                         <input type="button" id="adminArtistsBtn" value="Get Artists" class="adminSearchBtn">

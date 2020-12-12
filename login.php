@@ -1,7 +1,12 @@
 <?php
-    if (isset($_SESSION["customerId"])) {
-        header('Location: profile.php');
+    if (isset($_SESSION["role"]) && $_SESSION["role"] === "Customer") {
+        echo "<script>window.location.href='profile.php';</script>";
+        exit;
+    } else if (isset($_SESSION["role"]) && $_SESSION["role"] === "Admin") {
+        echo "<script>window.location.href='admin.php';</script>";
+        exit;
     }
+    
     $validation = "false";
     require_once('src/user.php');
     
@@ -11,7 +16,6 @@
         if($verify){
             session_start();
             $_SESSION["role"] = "Admin";
-           
         }
     } else if (isset($_POST["email"])) {
         $userValidation = true;
@@ -59,16 +63,16 @@
         include_once("header.php");
     ?>
     <body>
-        <div>
-            <form method="POST">
-                <fieldset>
+        <div id="loginDiv">
+            <form method="POST" id="loginForm">
+                <fieldset id="loginFieldset">
                     <legend>Login</legend>
                     <label>Username</label>
                     <input type="text" name="email" id="email">
                     <label>Password</label>
                     <input type="password" name="pwd" id="pwd">
                     <input type="submit" id="loginBtn" value="Login">
-                    <p>Not yet registered? <a href="signup.php">Sign up now</a>.</p>
+                    <a href="signup.php">Sign up now</a>
                 </fieldset>
             </form>
         </div>
