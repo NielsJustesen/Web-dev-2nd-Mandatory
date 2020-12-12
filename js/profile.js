@@ -1,22 +1,30 @@
 
 $(document).ready(function(){
 
+    var totalPrice = $("#invoicePrice").text();
+    var cartItems = [];
+    var ogPrices = [];
+    SetCart();
+    
     $(".removeCartItemBtn").on("click", function(e){
         let id = e.target.offsetParent.parentNode.id;
         window.location.href="profile.php?trackIndex="+id;
     });
+
+    $("#purchaseBtn").on("click", function(e){
+        console.log("Total price: " + TotalInvoicePrice(cartItems));
+    })
     
 
-    $(".songQuantity").on("change", function(e){
-        let price = $(".songPrice").html()
-        console.log("original price: "+price);
-        let quantity = $(".songQuantity").val();
-        console.log("qunatity: "+quantity);
-
-        let newPrice = price * quantity;
-        console.log("new price: "+newPrice);
-
-        $(".songPrice", {html:newPrice});
+    $(".songQuantInput").on("change", function(e){
+        let id = e.target.offsetParent.parentNode.id;
+        quantity = parseFloat($("#songIndex"+id)[0].value);
+        for (let i = 0; i < cartItems.length; i++) {
+            const item = cartItems[i];
+            if(i == id){
+                item.price = ogPrices[i] * quantity;
+            }
+        }
     })
 
     $("#editProlie").on("click", function(e){
@@ -104,5 +112,44 @@ $(document).ready(function(){
         }).fail(function(response){
             alert(response);
         })
+    }
+
+    function SetCart(){
+        cart = $(".cartRow");
+        songNames = $(".songName");
+
+       
+
+        for (let i = 0; i < cart.length; i++) {
+            let cartItem = {};
+            cartItems.push(cartItem);
+        }
+
+        for (let i = 0; i < songNames.length; i++) {
+            const element = songNames[i];
+            let name = element.innerText;
+                const item = cartItems[i];
+                item.name = name;
+
+            $.ajax({
+                url: "http://localhost/Chinook-Abridged-rest-api/tracks?name="+element.innerText,
+                type: "GET"
+            }).done(function(response){
+                item.price = parseFloat(response["UnitPrice"]);
+                ogPrices.push(response["UnitPrice"]);
+            }).fail(function(response){
+                console.log("failed" + response)
+            })
+
+        }
+    }
+
+    function TotalInvoicePrice(array){
+        total = 0.0;
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            total = total + element.price;
+        }
+        return total;
     }
 });

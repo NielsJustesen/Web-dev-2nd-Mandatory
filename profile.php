@@ -78,9 +78,10 @@
                         foreach ($cart as $key => $value){
                     ?>
                             <tr class="cartRow" id=<?=$key?>>
-                                <td class="songName" ><?=$value["Name"]?></td>
-                                <td class="songPrice" ><?=$value["Price"]?></td>
-                                <td class="songQuantity"><input type="text" class="songQuantInput" min="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
+                                <td class="songName" value=<?=$value["Name"]?>><?=$value["Name"]?></td>
+                                <td class="songPrice" id="songPrice<?=$key?>" value=<?=$value["Price"]?>><?=$value["Price"]?></td>
+                                <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$key?>" min="1" value=1  ></td>
+                                <!-- oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" -->
                                 <td class="songRemove"><input type="image" src="imgs/trash.png" class="removeCartItemBtn"></td>
                             </tr>
                     <?php
@@ -88,10 +89,11 @@
                         }
                     ?>
                 </table>
-                <div class="totalPrice">
+                <div class="totalPrice" hidden>
                     <span >Total Price:</span>
                     <span id="invoicePrice"><?=$totalprice?></span>
                 </div>
+                    <input type="button" id="purchaseBtn" value="Purchase Items">
             </fieldset>
         </div>
         <div id="editProfileModal" class="modal">

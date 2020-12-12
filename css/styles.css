@@ -310,6 +310,10 @@ h3 {
     width: 3em;
 }
 
+#purchaseBtn {
+    width: 10em;
+}
+
 #trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent, #editProfileModalContent, #editShippingModalContent, #editPasswordModalContent {
     background-color: #fefefe;
     margin: auto;
