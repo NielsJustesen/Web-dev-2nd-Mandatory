@@ -181,10 +181,11 @@ $(document).ready(function(){
             //add to cart form
             const submitId = valueOfElement.Name+String(valueOfElement.Milliseconds);
             let form = $("<form/>", {action:"browse.php" ,method:"POST",id:valueOfElement.Name});
-            let name = $("<input/>", {type:"hidden", name:"trackName", value: valueOfElement.Name});
-            let price = $("<input/>", {type:"hidden", name:"trackPrice",value: valueOfElement.UnitPrice});
+            let name = $("<input/>", {type:"hidden", name:"trackName", value:valueOfElement.Name});
+            let price = $("<input/>", {type:"hidden", name:"trackPrice", value:valueOfElement.UnitPrice});
+            let trackId = $("<input/>", {type:"hidden", name:"trackId", value:valueOfElement.TrackId});
             let submit = $("<input/>", {type: "image", alt:"submit", name:"addToCart", src:"imgs/cart.png", id:submitId})
-            form.append(name).append(price).append(submit)
+            form.append(name).append(price).append(trackId).append(submit)
             form.appendTo(formTd);
 
             parent.append(tr);

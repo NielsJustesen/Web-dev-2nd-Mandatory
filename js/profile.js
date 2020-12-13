@@ -1,24 +1,53 @@
-
 $(document).ready(function(){
 
-    var totalPrice = $("#invoicePrice").text();
-
+    const table = $("#invoiceCartTable");
+    const customerId = $("#customerId").text();
     var cartItems = [];
-    var ogPrices = [];  
+    var ogPrices = [];
     SetCart();
 
+    //Return the correct Id of the song that is to be removed
     $(".removeCartItemBtn").on("click", function(e){
+
         let id = e.target.offsetParent.parentNode.id;
         window.location.href="profile.php?trackIndex="+id;
+
     });
 
     $("#purchaseBtn").on("click", function(e){
+        
         const modal = $("#purchaseModal");
         modal[0].style.display = "block";
         console.log("Total price: " + TotalInvoicePrice(cartItems));
+        console.log(cartItems);
 
+        const table = $("<table/>", {id:"invoiceCartTable"});
+        const tHeaders =$("<tr/>");
+        const thName = $("<th/>", {text:"Name"});
+        const thPrice = $("<th/>", {text:"Price"});
+        const thQuantity = $("<th/>", {text:"Quantity"});
+        table.append(tHeaders).append(thName).append(thPrice).append(thQuantity);
+        for (let i = 0; i < cartItems.length; i++) {
+            const newRow = $("<tr/>");
+            const name = $("<td/>", {text:cartItems[i]["name"]});
+            const price = $("<td/>", {text:cartItems[i]["price"]})
+            const quant = $("<td/>", {text:cartItems[i]["quantity"]})
+            newRow.append(name).append(price).append(quant);
+            table.append(newRow);
+        }
+
+        const invoiceDiv = $("<div/>", {class:"totalPrice"});
+        const label = $("<p/>", {id:"invoicePriceTxt", text:"Total Price:"});
+        const price = $("<p/>", {id:"invoicePrice", text:TotalInvoicePrice(cartItems)});
+        invoiceDiv.append(label).append(price);
+        
+        $("#invoiceCart").append(table).append(invoiceDiv);
+
+        $("#invoicePrice").text(TotalInvoicePrice(cartItems));
         $("#cancelInvoiceBtn").on("click", function(e){
             modal[0].style.display = "none";
+            RemoveChildren(table);
+            invoiceDiv.remove();
         })
     })
     
@@ -32,9 +61,39 @@ $(document).ready(function(){
             let index = id.substring(id.length-1,id.length)
             if(i == index){
                 item.price = ogPrices[i] * quantity;
+                // quantities.push([item.name, item.price, quantity]);
+                cartItems[i]["quantity"] = quantity;
                 // console.log(item.price)
             }
         }
+    })
+
+    $("#invoiceSubmitForm").on("submit", function(e){
+
+        let address =$("#invoiceBillingAddress").val();
+        let city =$("#invoiceBillingCity").val();
+        let state =$("#invoiceBillingState").val();
+        let country =$("#invoiceBillingCountry").val();
+        let postalCode =$("#invoiceBillingPostalCode").val();
+        formData = {
+            "customerId": customerId,
+            "billingAddress": address,
+            "billingCity": city,
+            "billingState": state,
+            "billingCountry": country,
+            "billingPostalCode": postalCode,
+            "total": TotalInvoicePrice(cartItems)
+        };
+
+        alert(JSON.stringify(formData));
+        $.ajax({
+            url: "http://localhost/Chinook-Abridged-rest-api/invoices",
+            type: "POST"
+        }).done(function(response){
+
+        }).fail(function(response){
+
+        });
     })
 
     $("#editProlie").on("click", function(e){
@@ -125,8 +184,8 @@ $(document).ready(function(){
     }
 
     function SetCart(){
-        cart = $(".cartRow");
-        songNames = $(".songName");
+        let cart = $(".cartRow");
+        let songNames = $(".songName");
 
         for (let i = 0; i < cart.length; i++) {
             let cartItem = {};
@@ -136,22 +195,25 @@ $(document).ready(function(){
         for (let i = 0; i < songNames.length; i++) {
             const element = songNames[i];
             let name = element.innerText;
-                const item = cartItems[i];
-                item.name = name;
+            const item = cartItems[i];
+            item.name = name;
 
             $.ajax({
                 url: "http://localhost/Chinook-Abridged-rest-api/tracks?name="+element.innerText,
                 type: "GET"
             }).done(function(response){
                 item.price = parseFloat(response["UnitPrice"]);
+                item.trackId = response["TrackId"];
                 ogPrices.push(response["UnitPrice"]);
+                item.quantity = 1;
             }).fail(function(response){
                 console.log("failed" + response)
             })
+
         }
 
         console.log(cartItems)
-        console.log(ogPrices)
+        // console.log(ogPrices)
     }
 
     function TotalInvoicePrice(array){
@@ -160,6 +222,12 @@ $(document).ready(function(){
             const element = array[i];
             total = total + element.price;
         }
-        return total;
+        return total.toFixed(2);
     }
+
+    function RemoveChildren(parent){
+        for (let i = parent.children.length - 1; i >= 0; i--) {
+            parent.remove(parent.children[i]);
+            }
+        }
 });

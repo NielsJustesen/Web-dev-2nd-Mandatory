@@ -99,19 +99,23 @@ fieldset input, fieldset select {
 .totalPrice {
     background-color: ghostwhite;
     width: 30%;
-    padding: 5px;
+    padding: 7px;
     border-radius: 5px;
     border-style: solid;
     font-weight: bold;
     height: 1em;
+    justify-self: center;
+    display: inline-flex;
 }
 
 #invoicePrice {
-    float: right;
+    text-align: right;
+    margin: 0;
 }
 
 #invoicePriceTxt {
-    float: left;
+    text-align: left;
+    margin: 0;
 }
 
 footer {
@@ -387,6 +391,7 @@ h3 {
 #invoiceCart {
     width: 65%;
     height: fit-content;
+    display: grid;
 }
 
 #invoiceCart th {
@@ -396,4 +401,12 @@ h3 {
 
 #invoiceCartTable {
     background-color: white;
+}
+
+#submitInvoiceBtn {
+    height: 3em;
+    width: 6em;
+    position: relative;
+    top: 37em;
+    right: 19em;
 }

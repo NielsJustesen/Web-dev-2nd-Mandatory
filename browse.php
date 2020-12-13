@@ -4,9 +4,9 @@
     }
     if(isset($_SESSION["customerId"])){
         $cookieName = "CustomerID".$_SESSION["customerId"];
-        if(isset($_POST["trackName"]) && isset($_POST["trackPrice"])){
+        if(isset($_POST["trackName"]) && isset($_POST["trackPrice"]) && isset($_POST["trackId"])){
             if(isset($_COOKIE[$cookieName])){
-                $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"]];
+                $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"], "TrackId"=>$_POST["trackId"]];
                 $tracks = unserialize($_COOKIE[$cookieName]);
                 array_push($tracks, $newTrack);
                 setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");

@@ -49,11 +49,11 @@
                 <input type="image" id="editProlie" src="imgs/edit.png" class="editBtn">
                 <fieldset id="shipping">
                     <legend>Shipping</legend>
-                    <span>Address: <?=$address?></span><br>
-                    <span>City: <?=$city?></span><br>
-                    <span>State: <?=$state?></span><br>
-                    <span>Country: <?=$country?></span><br>
-                    <span>Postal Code: <?=$postalCode?></span><br>
+                    <span id="infoAddress">Address: <?=$address?></span><br>
+                    <span id="infoCity">City: <?=$city?></span><br>
+                    <span id="infoState">State: <?=$state?></span><br>
+                    <span id="infoCountry">Country: <?=$country?></span><br>
+                    <span id="infoPostalCode">Postal Code: <?=$postalCode?></span><br>
                     <input type="image" id="editShipping" src="imgs/edit.png" class="editBtn">
                 </fieldset>
                 <input type="button" id="editPassword" value="Change Password">
@@ -82,7 +82,6 @@
                                 <td class="songName" value=<?=$value["Name"]?>><?=$value["Name"]?></td>
                                 <td class="songPrice" id="songPrice<?=$key?>" value=<?=$value["Price"]?>><?=$value["Price"]?></td>
                                 <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$trackIndex?>" min="1" value=1  ></td>
-                                <!-- oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" -->
                                 <td class="songRemove"><input type="image" src="imgs/trash.png" class="removeCartItemBtn"></td>
                             </tr>
                     <?php
@@ -103,17 +102,17 @@
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="editProfileForm" method="PUT" class="profileForm">
                     <p>First Name</p>
-                    <input type="text" name="fisrtName" id="editFirstName" value=<?=$firstName?> required>
+                    <input type="text" name="fisrtName" id="editFirstName" value="<?=$firstName?>" required>
                     <p>Last Name</p>
-                    <input type="text" name="lastName" id="editLastName" value=<?=$lastName?> required>
+                    <input type="text" name="lastName" id="editLastName" value="<?=$lastName?>" required>
                     <p>Email</p>
-                    <input type="mail" name="email" id="editEmail" value=<?=$email?> required>
+                    <input type="mail" name="email" id="editEmail" value="<?=$email?>" required>
                     <p>Company</p>
-                    <input type="text" name="company" id="editCompany" value=<?=$company?> required>
+                    <input type="text" name="company" id="editCompany" value="<?=$company?>" required>
                     <p>Phone</p>
-                    <input type="text" name="phone" id="editPhone" value=<?=$phone?> required>
+                    <input type="text" name="phone" id="editPhone" value="<?=$phone?>" required>
                     <p>Fax</p>
-                    <input type="text" name="fax" id="editFax" value=<?=$fax?> required>
+                    <input type="text" name="fax" id="editFax" value="<?=$fax?>" required>
                     <input type="submit" value="Confirm">
                 </form>
             </div>
@@ -123,15 +122,15 @@
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="editShippingForm" method="PUT" class="profileForm">
                     <p>Address</p>
-                    <input type="text" name="address" id="editAddress" value=<?=$address?> required>
+                    <input type="text" name="address" id="editAddress" value="<?=$address?>" required>
                     <p>City</p>
-                    <input type="text" name="city" id="editCity" value=<?=$city?> required>
+                    <input type="text" name="city" id="editCity" value="<?=$city?>" required>
                     <p>State</p>
-                    <input type="text" name="state" id="editState" value=<?=$state?> required>
+                    <input type="text" name="state" id="editState" value="<?=$state?>" required>
                     <p>Country</p>
-                    <input type="text" name="country" id="editCountry" value=<?=$country?> required>
+                    <input type="text" name="country" id="editCountry" value="<?=$country?>" required>
                     <p>Postal Code</p>
-                    <input type="text" name="postalCode" id="editPostalCode" value=<?=$postalCode?> required>
+                    <input type="text" name="postalCode" id="editPostalCode" value="<?=$postalCode?>" required>
                     <input type="submit" value="Confirm">
                 </form>
             </div>
@@ -153,31 +152,20 @@
                     <fieldset id="invoiceShipping">
                         <legend>Invoice</legend>
                         <p>Billing Address</p>
-                        <input type="text" id="invoiceBillingAddress">
+                        <input type="text" id="invoiceBillingAddress" value="<?=$address?>">
                         <p>Billing City</p>
-                        <input type="text" id="invoiceBillingCity">
+                        <input type="text" id="invoiceBillingCity" value="<?=$city?>">
                         <p>Billing State</p>
-                        <input type="text" id="invoiceBillingState">
+                        <input type="text" id="invoiceBillingState" value="<?=$state?>">
                         <p>Billing Country</p>
-                        <input type="text" id="invoiceBillingCountry">
+                        <input type="text" id="invoiceBillingCountry" value="<?=$country?>">
                         <p>Billing Postal Code</p>
-                        <input type="text" id="invoiceBillingPostalCode"><br>
-                        <input type="submit">
+                        <input type="text" id="invoiceBillingPostalCode" value="<?=$postalCode?>"><br>
                     </fieldset>
                     <fieldset id="invoiceCart">
                         <legend>Cart</legend>
-                        <table id="invoiceCartTable">
-                            <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </table>
-                        <div class="totalPrice">
-                            <span id="invoicePriceTxt">Total Price</span>
-                            <span id="invoicePrice"></span>
-                        </div>
                     </fieldset>
+                    <input type="submit" id="submitInvoiceBtn" value="Buy">
                 </form>
             </div>
         </div>
