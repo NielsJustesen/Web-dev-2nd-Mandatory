@@ -6,6 +6,15 @@
     if(isset($_GET["trackIndex"])) {
         $toRemove = $_GET["trackIndex"];
     }
+    if(isset($_POST["purchase"])){
+        $cookieName = "CustomerID".$_SESSION["customerId"];
+        $cart = unserialize($_COOKIE[$cookieName]);
+        foreach ($cart as $key => $value) {
+            unset($cart[$key]);
+        }
+        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
+        header("location: profile.php");
+    }
     if (isset($_SESSION["customerId"])) {
         $customerId = $_SESSION["customerId"];
         $firstName = $_SESSION["firstName"];
@@ -20,6 +29,7 @@
         $country = $_SESSION["country"];
         $postalCode = $_SESSION["postalCode"];
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +158,7 @@
         <div id="purchaseModal" class="model">
             <div id="purchaseModalContent">
                 <span id="cancelInvoiceBtn" class="closeForm">&times;</span>
-                <form id="invoiceSubmitForm" action="profile.php" mathod="POST">
+                <form id="invoiceSubmitForm" action="profile.php" method="POST">
                     <fieldset id="invoiceShipping">
                         <legend>Invoice</legend>
                         <p>Billing Address</p>
@@ -165,6 +175,7 @@
                     <fieldset id="invoiceCart">
                         <legend>Cart</legend>
                     </fieldset>
+                    <input hidden type="text" name="purchase" value="true">
                     <input type="submit" id="submitInvoiceBtn" value="Buy">
                 </form>
             </div>

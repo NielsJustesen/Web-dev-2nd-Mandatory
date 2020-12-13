@@ -18,8 +18,6 @@ $(document).ready(function(){
         
         const modal = $("#purchaseModal");
         modal[0].style.display = "block";
-        console.log("Total price: " + TotalInvoicePrice(cartItems));
-        console.log(cartItems);
 
         const table = $("<table/>", {id:"invoiceCartTable"});
         const tHeaders =$("<tr/>");
@@ -61,9 +59,7 @@ $(document).ready(function(){
             let index = id.substring(id.length-1,id.length)
             if(i == index){
                 item.price = ogPrices[i] * quantity;
-                // quantities.push([item.name, item.price, quantity]);
                 cartItems[i]["quantity"] = quantity;
-                // console.log(item.price)
             }
         }
     })
@@ -75,24 +71,58 @@ $(document).ready(function(){
         let state =$("#invoiceBillingState").val();
         let country =$("#invoiceBillingCountry").val();
         let postalCode =$("#invoiceBillingPostalCode").val();
-        formData = {
-            "customerId": customerId,
-            "billingAddress": address,
+        invoiceData = {
+            "customerId": parseInt(customerId),
+            "billindAddress": address,
             "billingCity": city,
             "billingState": state,
             "billingCountry": country,
             "billingPostalCode": postalCode,
-            "total": TotalInvoicePrice(cartItems)
+            "total": parseFloat(TotalInvoicePrice(cartItems))
         };
-
-        alert(JSON.stringify(formData));
         $.ajax({
             url: "http://localhost/Chinook-Abridged-rest-api/invoices",
-            type: "POST"
+            type: "POST",
+            data: invoiceData
         }).done(function(response){
 
-        }).fail(function(response){
+            alert("----SUCCESS---- INVOICE " + JSON.stringify(response));
 
+            const invoiceID = response.InvoiceId;
+            let async_request= [];
+            let responses= [];
+            let requestBodies= [];
+
+            for (let i = 0; i < cartItems.length; i++) {
+                const element = cartItems[i];
+                invoiceLineData = {
+                    "invoiceId": parseInt(invoiceID),
+                    "quantity": parseInt(element["quantity"]),
+                    "trackId": parseInt(element["trackId"]),
+                    "unitPrice": parseFloat(ogPrices[i])
+                };
+                requestBodies.push(invoiceLineData);
+            }
+
+            for(i in requestBodies)
+            {
+                async_request.push($.ajax({
+                    url: "http://localhost/Chinook-Abridged-rest-api/invoicelines",
+                    method: "POST",
+                    data: requestBodies[i]
+                }).done(function(response){
+                    responses.push(JSON.stringify(response));
+                }).fail(function(response){
+                    alert("FAILED TO CREATE INVOICELINE");
+                }));
+            }
+
+            $.when.apply(null, async_request).done( function(){
+                alert(responses);
+            });
+
+        }).fail(function(){
+            alert("FAILED TO CREATE INVOICE");
         });
     })
 
@@ -211,9 +241,6 @@ $(document).ready(function(){
             })
 
         }
-
-        console.log(cartItems)
-        // console.log(ogPrices)
     }
 
     function TotalInvoicePrice(array){
