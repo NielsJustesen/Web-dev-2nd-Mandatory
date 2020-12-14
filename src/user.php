@@ -18,15 +18,20 @@
 
         //Connect to the database
         public function __construct() {
+            $server = "chinookabridgeddb.cxypwdfo5x68.us-east-1.rds.amazonaws.com";
+            $port = 3306;
+            $dbName = "chinook_abridged";
+            $user = "admin";
+            $pwd = "chinookadmin";
             
-            $dsn = 'mysql:host=localhost; dbname=chinook_abridged; charset=utf8';
+            $dsn = "mysql:host=".$server."; port=".$port."; dbname=".$dbName."; charset=utf8";
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ];
 
             try {
-                $this->pdo = @new PDO($dsn, 'root', "", $options); 
+                $this->pdo = @new PDO($dsn, $user, $pwd, $options); 
             } catch (\PDOException $e) {
                 echo 'Connection unsuccessful';
                 die('Connection unsuccessful: ' . $e->getMessage());
