@@ -1,18 +1,9 @@
 <?php
-    //Make delete cart item button from form, with post, to unset() the array index from the customer cookie
     if(!isset($_SESSION)){
         session_start();
     }
     if(isset($_GET["trackIndex"])) {
         $toRemove = $_GET["trackIndex"];
-    }
-    if(isset($_POST["purchase"])){
-        // $cookieName = "CustomerID".$_SESSION["customerId"];
-        // $cart = unserialize($_COOKIE[$cookieName]);
-        // foreach ($cart as $key => $value) {
-        //     unset($cart[$key]);
-        // }
-        // setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
     }
     if (isset($_SESSION["customerId"])) {
         $customerId = $_SESSION["customerId"];
@@ -30,7 +21,6 @@
         $cookieName = "CustomerID".$_SESSION["customerId"];
         $cart = unserialize($_COOKIE[$cookieName]);
     }
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +83,6 @@
                     </tr>
                     <?php
                         $cookieName = "CustomerID".$_SESSION["customerId"];
-                        // $cart = unserialize($_COOKIE[$cookieName]);
                         if(isset($toRemove)){
                             unset($cart[$toRemove]);
                             setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
@@ -114,12 +103,7 @@
                         }
                     ?>
                 </table>
-                <!-- <div class="totalPrice" hidden>
-                    <span >Total Price:</span>
-                    <span id="invoicePrice"></span>
-                    <?=$totalprice?>
-                </div> -->
-                    <input type="button" id="purchaseBtn" value="Purchase Items">
+                <input type="button" id="purchaseBtn" value="Purchase Items">
             </fieldset>
         </div>
         <div id="editProfileModal" class="modal">

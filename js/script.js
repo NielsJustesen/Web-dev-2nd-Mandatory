@@ -185,7 +185,8 @@ $(document).ready(function(){
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
             $("<td/>").attr("class", "artistName").text(valueOfElement.Name).appendTo(tr);
             $("<td/>").attr("class", "ablumTitle").text(valueOfElement.Title).appendTo(tr);
-            let tracksBtn = $("<input/>").attr("type", "image").attr("src","imgs/track.png").appendTo(tr);
+            let tracksBtn = $("<input/>").attr("type", "image").attr("src","imgs/track.png");
+            $("<td/>").attr("class", "albumsTracks").appendTo(tr).append(tracksBtn);
             
             tracksBtn.on("click", function(e){
                 TracksByArtist("album", valueOfElement.Title);

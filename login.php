@@ -1,9 +1,9 @@
 <?php
     if (isset($_SESSION["role"]) && $_SESSION["role"] === "Customer") {
-        echo "<script>window.location.href='profile.php';</script>";
+        header("Location: http://localhost/Chinook_Abridged/profile.php");
         exit;
     } else if (isset($_SESSION["role"]) && $_SESSION["role"] === "Admin") {
-        echo "<script>window.location.href='admin.php';</script>";
+        header("Location: http://localhost/Chinook_Abridged/admin.php");
         exit;
     }
     

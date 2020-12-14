@@ -1,7 +1,5 @@
 <?php
-    if(!isset($_SESSION)){
-        session_start();
-    }
+    session_start();
     if(isset($_SESSION["customerId"])){
         $cookieName = "CustomerID".$_SESSION["customerId"];
         if(isset($_POST["trackName"]) && isset($_POST["trackPrice"]) && isset($_POST["trackId"])){
@@ -39,7 +37,7 @@
         <main id="browseMain">
             <div id="searchByDiv">
                 <span id="info">Search on Tracks, Albums and Artists </span>
-                <fieldset>
+                <fieldset id="trackSearchFieldset">
                     <legend>Track Search</legend>
                     <select id="order">
                         <option value="composer">Composer</option>

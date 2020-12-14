@@ -31,10 +31,6 @@
             <form action="index.php" method="POST">
                 <input type="submit" name="logout" value="Logout">
             </form>
-    
-            <form action="cookie.php" method="POST">
-                <input type="submit" name="cookie" value="Tracks Cookie Test">
-            </form>
             <?php
             if($_SESSION["role"] === "Admin"){
                 ?>

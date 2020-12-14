@@ -1,8 +1,8 @@
 <?php
+    session_start();
     if(isset($_POST["logout"])){
-        if(isset($_SESSION)){
-                session_destroy();
-            }
+        session_destroy();
+        unset($_POST["logout"]);
     }
 ?>
 <!DOCTYPE html>

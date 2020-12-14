@@ -198,11 +198,17 @@ td {
 }
 
 tr input {
-    margin: 1em 32% 0em 32%;
+    /* margin: 1em 32% 0em 32%;
     width: 40%;
     text-align: center;
     border-style: outset;
-    background-color: whitesmoke;
+    background-color: whitesmoke; */
+
+    width: 45%;
+    text-align: center;
+    /* border-style: outset; */
+    /* background-color: whitesmoke; */
+    float: right;
 }
 
 #cartTable td {
