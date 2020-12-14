@@ -8,8 +8,16 @@
             if(isset($_COOKIE[$cookieName])){
                 $newTrack = ["Name"=>$_POST["trackName"], "Price"=>$_POST["trackPrice"], "TrackId"=>$_POST["trackId"]];
                 $tracks = unserialize($_COOKIE[$cookieName]);
-                array_push($tracks, $newTrack);
-                setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
+                $containsTrack = false;
+                foreach ($tracks as $key => $value) {
+                    if($newTrack["TrackId"] === $value["TrackId"]){
+                        $containsTrack = true;
+                    }
+                }
+                if(!$containsTrack){
+                    array_push($tracks, $newTrack);
+                    setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
+                }
             }
         }
     }
@@ -28,15 +36,21 @@
         <?php
             include_once("header.php");
         ?>
-        <main>
+        <main id="browseMain">
             <div id="searchByDiv">
-                <span id="info">Search based on the selected value: </span>
-                <select id="searchBy">
-                    <option default>Select one</span>
-                    <option value="track">Track</option>
-                    <option value="artist">Artist</option>
-                    <option value="album">Album</option>
-                </select>
+                <span id="info">Search on Tracks, Albums and Artists </span>
+                <fieldset>
+                    <legend>Track Search</legend>
+                    <select id="order">
+                        <option value="composer">Composer</option>
+                        <option value="artist">Artist</option>
+                        <option value="album">Album</option>
+                    </select>
+                    <input type="text" id="searchBy">
+                    <input type="button" id="getTracksBtn" class="searchOption" value="Get Tracks">
+                </fieldset>
+                <input type="button" id="getArtistsBtn" class="searchOption" value="Get Artists">
+                <input type="button" id="getAlbumsBtn" class="searchOption" value="Get Albums">
             </div>
         </main>
         <?php

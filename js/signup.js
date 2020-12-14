@@ -16,15 +16,4 @@ $(document).ready(function(){
         });
 
     });
-
-
-    function PasswordMatch(pwd, conPwd){
-        if(pwd === conPwd){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-   
 });

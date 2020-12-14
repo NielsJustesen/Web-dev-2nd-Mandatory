@@ -1,110 +1,85 @@
 $(document).ready(function(){
 
     const main = $("main");
-     $("#searchBy").on("change", function(e){
+
+
+    $("#getArtistsBtn").on("click", function(e){
+        RemoveChildren($("#browseDiv"));
         $("#browseResults").remove();
-        switch ($("#searchBy").val()) {
-            
-            case "track":
-                removeChildren($("#browseDiv"));
-                var browse = $("<div/>").attr("id", "browseDiv").appendTo(main);
-                $("<span/>").text("Search tracks from: ").appendTo(browse).append("<br>");
-                var selector = $("<select/>").attr("id", "order");
-                $("<option/>").attr("value","artist").text("Artist").appendTo(selector);
-                $("<option/>").attr("value","album").text("Album").appendTo(selector);
-                $("<option/>").attr("value","composer").text("Composer").appendTo(selector);
-                selector.appendTo(browse);
-                var txtInput = $("<input/>").attr("type", "text").attr("id", "searchBy").appendTo(browse);
-                const btnSearchTrack = $("<input/>").attr("type", "button").attr("id", "searchBtn").attr("value", "Search").appendTo(browse);
-                $(btnSearchTrack).on("click", function(e){
-                    $("#browseResults").remove();
-                    
-                    let selected = selector.val();
-                    let txt = txtInput.val();
-                    console.log(txt)
-                    let resultTable = $("<table/>").attr("id", "browseResults");
-                    let tableHeaders = $("<tr/>").appendTo(resultTable);
-                    $("<th/>").text("Name").appendTo(tableHeaders);
-                    $("<th/>").text("Length").appendTo(tableHeaders);
-                    $("<th/>").text("Price").appendTo(tableHeaders);
-                    $("<th/>").text("Add to cart").appendTo(tableHeaders);
-                 
 
-                    $.ajax({
-                       url: "http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
-                       type: "GET"
-                    }).done(function(response){
+        var resultTable = $("<table/>").attr("id", "browseResults");
+        var tableHeaders = $("<tr/>").appendTo(resultTable);
+        $("<th/>").text("Artist Name").appendTo(tableHeaders);
+        $("<th/>").text("Tracks").appendTo(tableHeaders);
+        $("<th/>").text("Albums").appendTo(tableHeaders);
 
-                        populateTrackResultDiv(resultTable, response);
-                        resultTable.appendTo(main);
+        $.ajax({
+            url: "http://localhost/Chinook-Abridged-rest-api/artists",
+            type: "GET"
+        }).done(function(response){
 
-                    }).fail(function(e){
+            PopulateArtistResultDiv(resultTable, response);
+            resultTable.appendTo(main);
 
-                        console.log("Failed "+e);
+        }).fail(function(e){
+            console.log("Failed "+e);
+        });
+    })
 
-                    });
-                 });
-                break;
-            case "artist":
+    $("#getAlbumsBtn").on("click", function(e){
+        RemoveChildren($("#browseDiv"));
+        $("#browseResults").remove();
+        
+        var resultTable = $("<table/>").attr("id", "browseResults");
+        var tableHeaders = $("<tr/>").appendTo(resultTable);
 
-                removeChildren($("#browseDiv"));
-                $("#browseResults").remove();
+        $("<th/>").text("Artist Name").appendTo(tableHeaders);
+        $("<th/>").text("Album Name").appendTo(tableHeaders);
+        $("<th/>").text("Browse").appendTo(tableHeaders);
 
-                var resultTable = $("<table/>").attr("id", "browseResults");
-                var tableHeaders = $("<tr/>").appendTo(resultTable);
-                $("<th/>").text("Artist Name").appendTo(tableHeaders);
-                $("<th/>").text("Tracks").appendTo(tableHeaders);
-                $("<th/>").text("Albums").appendTo(tableHeaders);
+        $.ajax({
+            url: "http://localhost/Chinook-Abridged-rest-api/albums",
+            type: "GET"
+        }).done(function(response){
 
+            PopulateAlbumRestultDiv(resultTable, response);
+            resultTable.appendTo(main);
 
-                $.ajax({
-                    url: "http://localhost/Chinook-Abridged-rest-api/artists",
-                    type: "GET"
-                }).done(function(response){
+        }).fail(function(e){
+            console.log("Failed "+JSON.stringify(e));
+        });
+    })
 
-                    populateArtistResultDiv(resultTable, response);
-                    resultTable.appendTo(main);
+    $("#getTracksBtn").on("click", function(e){
+        $("#browseResults").remove();
+        
+        let selected = $("#order").val();
+        let txt = $("#searchBy").val();
+        console.log(txt)
+        let resultTable = $("<table/>").attr("id", "browseResults");
+        let tableHeaders = $("<tr/>").appendTo(resultTable);
+        $("<th/>").text("Name").appendTo(tableHeaders);
+        $("<th/>").text("Length").appendTo(tableHeaders);
+        $("<th/>").text("Price").appendTo(tableHeaders);
+        $("<th/>").text("Add to cart").appendTo(tableHeaders);
+     
 
-                }).fail(function(e){
+        $.ajax({
+           url: "http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
+           type: "GET"
+        }).done(function(response){
 
-                    console.log("Failed "+e);
+            PopulateTrackResultDiv(resultTable, response);
+            resultTable.appendTo(main);
 
-                });
-                break;
-            case "album":
-                removeChildren($("#browseDiv"));
-                $("#browseResults").remove();
-                
-                var resultTable = $("<table/>").attr("id", "browseResults");
-                var tableHeaders = $("<tr/>").appendTo(resultTable);
-
-                $("<th/>").text("Artist Name").appendTo(tableHeaders);
-                $("<th/>").text("Album Name").appendTo(tableHeaders);
-                $("<th/>").text("Browse").appendTo(tableHeaders);
-
-                $.ajax({
-                    url: "http://localhost/Chinook-Abridged-rest-api/albums",
-                    type: "GET"
-                }).done(function(response){
-
-                    populateAlbumRestultDiv(resultTable, response);
-                    resultTable.appendTo(main);
-
-                }).fail(function(e){
-
-                    console.log("Failed "+e);
-
-                });
-                break;
-            default:
-                browseDiv.children.show();
-                break;
-        }
-     });
+        }).fail(function(e){
+            console.log("Failed "+JSON.stringify(e));
+        });
+    });
 
 
-    function tracksByArtist(selected, txt){
-        removeChildren($("#browseDiv"));
+    function TracksByArtist(selected, txt){
+        RemoveChildren($("#browseDiv"));
         $("#browseResults").remove();
 
         let resultTable = $("<table/>").attr("id", "browseResults");
@@ -119,18 +94,16 @@ $(document).ready(function(){
             type: "GET"
         }).done(function(response){
 
-            populateTrackResultDiv(resultTable, response);
+            PopulateTrackResultDiv(resultTable, response);
             resultTable.appendTo(main);
 
         }).fail(function(e){
-
-            console.log("Failed "+e);
-
+            console.log("Failed "+JSON.stringify(e));
         });
     }
 
-    function albumsByArtist(artistName){
-        removeChildren($("#browseDiv"));
+    function AlbumsByArtist(artistName){
+        RemoveChildren($("#browseDiv"));
         $("#browseResults").remove();
 
         var resultTable = $("<table/>").attr("id", "browseResults");
@@ -145,7 +118,7 @@ $(document).ready(function(){
             type: "GET"
         }).done(function(response){
 
-            populateAlbumRestultDiv(resultTable, response);
+            PopulateAlbumRestultDiv(resultTable, response);
             resultTable.appendTo(main);
 
         }).fail(function(e){
@@ -154,19 +127,14 @@ $(document).ready(function(){
 
         });
     }
-     
-     
 
-
-
-
-    function removeChildren(parent){
+    function RemoveChildren(parent){
     for (let i = parent.children.length - 1; i >= 0; i--) {
         parent.remove(parent.children[i]);
         }
     }
 
-    function populateTrackResultDiv(parent, data){
+    function PopulateTrackResultDiv(parent, data){
         $.each(data, function (indexInArray, valueOfElement) { 
 
             let minLength = valueOfElement.Milliseconds / 60000;
@@ -180,7 +148,7 @@ $(document).ready(function(){
     
             //add to cart form
             const submitId = valueOfElement.Name+String(valueOfElement.Milliseconds);
-            let form = $("<form/>", {action:"browse.php" ,method:"POST",id:valueOfElement.Name});
+            let form = $("<form/>", {action:"browse.php" ,method:"POST"});
             let name = $("<input/>", {type:"hidden", name:"trackName", value:valueOfElement.Name});
             let price = $("<input/>", {type:"hidden", name:"trackPrice", value:valueOfElement.UnitPrice});
             let trackId = $("<input/>", {type:"hidden", name:"trackId", value:valueOfElement.TrackId});
@@ -192,7 +160,7 @@ $(document).ready(function(){
         });
     }
 
-    function populateArtistResultDiv(parent, data){
+    function PopulateArtistResultDiv(parent, data){
 
         $.each(data, function (indexInArray, valueOfElement) { 
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
@@ -201,18 +169,18 @@ $(document).ready(function(){
             let albumsbtn = $("<td/>").attr("class", "artistAlbums").append($("<input/>").attr("type", "image").attr("src","imgs/album.png")).appendTo(tr);
             
             tracksBtn.on("click", function(e){
-                tracksByArtist("artist", valueOfElement.Name)
+                TracksByArtist("artist", valueOfElement.Name)
             });
 
             albumsbtn.on("click", function(e){
-                albumsByArtist(valueOfElement.Name);
+                AlbumsByArtist(valueOfElement.Name);
             })
             
             parent.append(tr);
         });
     }
 
-    function populateAlbumRestultDiv(parent, data){
+    function PopulateAlbumRestultDiv(parent, data){
         $.each(data, function (indexInArray, valueOfElement) { 
             let tr = $("<tr/>").attr("class", "tableItem").appendTo(parent);
             $("<td/>").attr("class", "artistName").text(valueOfElement.Name).appendTo(tr);
@@ -220,7 +188,7 @@ $(document).ready(function(){
             let tracksBtn = $("<input/>").attr("type", "image").attr("src","imgs/track.png").appendTo(tr);
             
             tracksBtn.on("click", function(e){
-                tracksByArtist("album", valueOfElement.Title);
+                TracksByArtist("album", valueOfElement.Title);
             })
             
             parent.append(tr);

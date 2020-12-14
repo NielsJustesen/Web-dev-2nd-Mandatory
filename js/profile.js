@@ -15,7 +15,10 @@ $(document).ready(function(){
     });
 
     $("#purchaseBtn").on("click", function(e){
-        
+        if(cartItems.length < 1){
+            alert("Your cart is empty");
+            return;
+        }
         const modal = $("#purchaseModal");
         modal[0].style.display = "block";
 
@@ -86,7 +89,7 @@ $(document).ready(function(){
             data: invoiceData
         }).done(function(response){
 
-            alert("----SUCCESS---- INVOICE " + JSON.stringify(response));
+            // alert("----SUCCESS---- INVOICE " + JSON.stringify(response));
 
             const invoiceID = response.InvoiceId;
             let async_request= [];
@@ -116,10 +119,6 @@ $(document).ready(function(){
                     alert("FAILED TO CREATE INVOICELINE");
                 }));
             }
-
-            $.when.apply(null, async_request).done( function(){
-                alert(responses);
-            });
 
         }).fail(function(){
             alert("FAILED TO CREATE INVOICE");

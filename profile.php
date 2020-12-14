@@ -7,13 +7,12 @@
         $toRemove = $_GET["trackIndex"];
     }
     if(isset($_POST["purchase"])){
-        $cookieName = "CustomerID".$_SESSION["customerId"];
-        $cart = unserialize($_COOKIE[$cookieName]);
-        foreach ($cart as $key => $value) {
-            unset($cart[$key]);
-        }
-        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
-        header("location: profile.php");
+        // $cookieName = "CustomerID".$_SESSION["customerId"];
+        // $cart = unserialize($_COOKIE[$cookieName]);
+        // foreach ($cart as $key => $value) {
+        //     unset($cart[$key]);
+        // }
+        // setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
     }
     if (isset($_SESSION["customerId"])) {
         $customerId = $_SESSION["customerId"];
@@ -28,6 +27,8 @@
         $state = $_SESSION["state"];
         $country = $_SESSION["country"];
         $postalCode = $_SESSION["postalCode"];
+        $cookieName = "CustomerID".$_SESSION["customerId"];
+        $cart = unserialize($_COOKIE[$cookieName]);
     }
     
 ?>
@@ -69,6 +70,19 @@
                 <input type="button" id="editPassword" value="Change Password">
             </fieldset>
             <fieldset id="cart">
+                <?php
+                    if(isset($_POST["purchase"]))
+                    {
+                        foreach ($cart as $key => $value) {
+                            unset($cart[$key]);
+                        }
+                        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
+                ?>
+                        <p><b>Thank you for your purchase!</b></p>
+                <?php
+                        unset($_POST["purchase"]);
+                    }
+                ?>
                 <legend>Cart</legend>
                 <table id="cartTable">
                     <tr>
@@ -79,7 +93,7 @@
                     </tr>
                     <?php
                         $cookieName = "CustomerID".$_SESSION["customerId"];
-                        $cart = unserialize($_COOKIE[$cookieName]);
+                        // $cart = unserialize($_COOKIE[$cookieName]);
                         if(isset($toRemove)){
                             unset($cart[$toRemove]);
                             setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
@@ -100,10 +114,11 @@
                         }
                     ?>
                 </table>
-                <div class="totalPrice" hidden>
+                <!-- <div class="totalPrice" hidden>
                     <span >Total Price:</span>
-                    <span id="invoicePrice"><?=$totalprice?></span>
-                </div>
+                    <span id="invoicePrice"></span>
+                    <?=$totalprice?>
+                </div> -->
                     <input type="button" id="purchaseBtn" value="Purchase Items">
             </fieldset>
         </div>
