@@ -15,6 +15,8 @@
         <?php
             session_start();
             include_once("header.php");
+            if(isset($_SESSION["role"]) && $_SESSION["role"] === "Admin"){
+
         ?>
         <main>
             <div id="adminBrowsing">
@@ -240,6 +242,7 @@
             </div>
         </div>
         <?php
+            }
             include_once("footer.htm");
         ?>
 </html>
