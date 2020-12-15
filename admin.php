@@ -9,6 +9,7 @@
     <script src="js/script.js"></script>
     <script src="js/adminUpdateDelete.js"></script>
     <script src="js/adminCreate.js"></script>
+    <script srt="js/ApiUrls.js"></script>
 </head>
 <body>
         <?php
@@ -48,8 +49,8 @@
         </main>
         <div id="trackModal" class="modal">
             <div id="trackModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="trackModalForm" method="PUT">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Edit song</legend>
                         <label>Name</label>
@@ -107,8 +108,8 @@
         </div>
         <div id="albumModal" class="modal">
             <div id="albumModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="albumModalForm" method="PUT">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Edit Album</legend>
                         <label>Title</label>
@@ -122,8 +123,8 @@
         </div>
         <div id="artistModal" class="modal">
             <div id="artistModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="artistModalForm" method="PUT">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Edit Artist</legend>
                         <label>Name</label>
@@ -135,8 +136,8 @@
         </div>
         <div id="createTrackModal" class="modal">
             <div id="createTrackModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="createTrackModalForm" method="POST">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Create song</legend>
                         <label>Name</label>
@@ -194,8 +195,8 @@
         </div>
         <div id="createAlbumModal" class="modal">
             <div id="createAlbumModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="createAlbumModalForm" method="POST">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Create Album</legend>
                         <label>Title</label>
@@ -209,8 +210,8 @@
         </div>
         <div id="createArtistModal" class="modal">
             <div id="createArtistModalContent">
+                <span class="closeForm">&times;</span>
                 <form id="createArtistModalForm" method="POST">
-                    <span class="closeForm">&times;</span>
                     <fieldset>
                         <legend>Create Artist</legend>
                         <label>Name</label>

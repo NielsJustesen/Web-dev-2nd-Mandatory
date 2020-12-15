@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+    const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
+    const extTracks = "tracks";
+    const extArtists = "artists";
+    const extAlbums = "albums";
+    const extInvoices = "invoices";
+    const extInvoiceLines = "invoicelines"
+    const extCustomers = "customers"
+
     const table = $("#invoiceCartTable");
     const customerId = $("#customerId").text();
     var cartItems = [];
@@ -84,7 +92,7 @@ $(document).ready(function(){
             "total": parseFloat(TotalInvoicePrice(cartItems))
         };
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/invoices",
+            url: baseUrl+extInvoices,//"http://localhost/Chinook-Abridged-rest-api/invoices",
             type: "POST",
             data: invoiceData
         }).done(function(response){
@@ -110,7 +118,7 @@ $(document).ready(function(){
             for(i in requestBodies)
             {
                 async_request.push($.ajax({
-                    url: "http://localhost/Chinook-Abridged-rest-api/invoicelines",
+                    url: baseUrl+extInvoiceLines,//"http://localhost/Chinook-Abridged-rest-api/invoicelines",
                     method: "POST",
                     data: requestBodies[i]
                 }).done(function(response){
@@ -201,7 +209,7 @@ $(document).ready(function(){
 
     function UpdateRequest(formData){
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/customers",
+            url: baseUrl+extCustomers,//"http://localhost/Chinook-Abridged-rest-api/customers",
             type: "PUT",
             data: JSON.stringify(formData)
         })
@@ -228,7 +236,7 @@ $(document).ready(function(){
             item.name = name;
 
             $.ajax({
-                url: "http://localhost/Chinook-Abridged-rest-api/tracks?name="+element.innerText,
+                url: baseUrl+extTracks+"?name="+element.innerText,//"http://localhost/Chinook-Abridged-rest-api/tracks?name="+element.innerText,
                 type: "GET"
             }).done(function(response){
                 item.price = parseFloat(response["UnitPrice"]);

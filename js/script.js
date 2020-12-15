@@ -1,7 +1,13 @@
 $(document).ready(function(){
 
     const main = $("main");
-
+    const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
+    const extTracks = "tracks";
+    const extArtists = "artists";
+    const extAlbums = "albums";
+    const extInvoices = "invoices";
+    const extInvoiceLines = "invoicelines";
+    const extCustomers = "customers";
 
     $("#getArtistsBtn").on("click", function(e){
         RemoveChildren($("#browseDiv"));
@@ -14,7 +20,7 @@ $(document).ready(function(){
         $("<th/>").text("Albums").appendTo(tableHeaders);
 
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/artists",
+            url: baseUrl+extArtists, //"http://localhost/Chinook-Abridged-rest-api/artists",
             type: "GET"
         }).done(function(response){
 
@@ -38,7 +44,7 @@ $(document).ready(function(){
         $("<th/>").text("Browse").appendTo(tableHeaders);
 
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/albums",
+            url: baseUrl+extAlbums,//"http://localhost/Chinook-Abridged-rest-api/albums",
             type: "GET"
         }).done(function(response){
 
@@ -65,7 +71,7 @@ $(document).ready(function(){
      
 
         $.ajax({
-           url: "http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
+           url: baseUrl+extTracks+"?order="+selected+"&name="+txt,//"http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
            type: "GET"
         }).done(function(response){
 
@@ -90,7 +96,7 @@ $(document).ready(function(){
         $("<th/>").text("Add to cart").appendTo(tableHeaders);
 
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
+            url: baseUrl+extTracks+"?order="+selected+"&name="+txt,//"http://localhost/Chinook-Abridged-rest-api/tracks?order="+selected+"&name="+txt,
             type: "GET"
         }).done(function(response){
 
@@ -114,7 +120,7 @@ $(document).ready(function(){
         $("<th/>").text("Tracks").appendTo(tableHeaders);
 
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/albums?order=artist&name="+artistName,
+            url: baseUrl+extAlbums+"?order="+extArtists+"&name="+artistName,//"http://localhost/Chinook-Abridged-rest-api/albums?order=artist&name="+artistName,
             type: "GET"
         }).done(function(response){
 

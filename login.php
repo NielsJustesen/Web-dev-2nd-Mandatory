@@ -58,6 +58,7 @@
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/jquery-3.5.1.js"></script>
         <script src="js/script.js"></script>
+        <script srt="js/ApiUrls.js"></script>
     </head>
     <?php
         include_once("header.php");

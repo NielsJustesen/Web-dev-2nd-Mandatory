@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    
+    const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
+    const extTracks = "tracks";
+    const extArtists = "artists";
+    const extAlbums = "albums";
+    
     // get all tracks either by artist name or just all
     $("#adminTracksBtn").on("click", function(e){
         let div = $(".adminTrackItem");
@@ -10,10 +16,10 @@ $(document).ready(function(){
         let trackUrl = "";
         if(TrimInput(trackTxt.val()) === "")
         {
-            trackUrl = "http://localhost/Chinook-Abridged-rest-api/tracks"
+            trackUrl = baseUrl+extTracks; //"http://localhost/Chinook-Abridged-rest-api/tracks"
         }
         else {
-            trackUrl = "http://localhost/Chinook-Abridged-rest-api/tracks?order=artist&name="+trackTxt.val();
+            trackUrl = baseUrl+extTracks+"?order=artist&name="+trackTxt.val(); //"http://localhost/Chinook-Abridged-rest-api/tracks?order=artist&name="+trackTxt.val();
         }
         $.ajax({
             url: trackUrl,
@@ -71,7 +77,7 @@ $(document).ready(function(){
                             "unitPrice": price
                         };
                         let id = valueOfElement["TrackId"];
-                        let putUrl = "http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
+                        let putUrl = baseUrl+extTracks+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
                         
                         // update the track with ajax
                         $.ajax({
@@ -97,7 +103,7 @@ $(document).ready(function(){
 
                     confirmBtn.on("click", function(e){
                         let id = valueOfElement["TrackId"];
-                        let deleteUrl = "http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
+                        let deleteUrl = baseUrl+extTracks+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
                         $.ajax({
                             url: deleteUrl,
                             type: "DELETE",
@@ -130,13 +136,12 @@ $(document).ready(function(){
         const albumDiv = $("#adminAlbums");
         const albumTxt = $("#adminAlbumTxt");
         let albumUrl = "";
-
         if(TrimInput(albumTxt.val()) === "")
         {
-            albumUrl = "http://localhost/Chinook-Abridged-rest-api/albums"
+            albumUrl = baseUrl+extAlbums;  //"http://localhost/Chinook-Abridged-rest-api/albums"
         }
         else {
-            albumUrl = "http://localhost/Chinook-Abridged-rest-api/albums?order=artist&name="+albumTxt.val();
+            albumUrl = baseUrl+extAlbums+"?order=artist&name="+albumTxt.val();  //"http://localhost/Chinook-Abridged-rest-api/albums?order=artist&name="+albumTxt.val();
         }
         $.ajax({
             url: albumUrl,
@@ -180,7 +185,7 @@ $(document).ready(function(){
                             "artistId": artistId
                         };
                         let id = valueOfElement["AlbumId"];
-                        let putUrl = "http://localhost/Chinook-Abridged-rest-api/albums/"+id;
+                        let putUrl = baseUrl+extAlbums+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/albums/"+id;
                        
                         // update the album with ajax
                         $.ajax({
@@ -207,7 +212,7 @@ $(document).ready(function(){
 
                     confirmBtn.on("click", function(e){
                         let id = valueOfElement["AlbumId"];
-                        let deleteUrl = "http://localhost/Chinook-Abridged-rest-api/albums/"+id;
+                        let deleteUrl = baseUrl+extAlbums+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/albums/"+id;
                         $.ajax({
                             url: deleteUrl,
                             type: "DELETE",
@@ -241,10 +246,10 @@ $(document).ready(function(){
         let artistUrl = "";
         if(TrimInput(artistTxt.val()) === "")
         {
-            artistUrl = "http://localhost/Chinook-Abridged-rest-api/artists"
+            artistUrl = baseUrl+extArtists; //"http://localhost/Chinook-Abridged-rest-api/artists"
         }
         else {
-            artistUrl = "http://localhost/Chinook-Abridged-rest-api/artists?name="+artistTxt.val();
+            artistUrl = baseUrl+extArtists+"?name="+artistTxt.val(); //"http://localhost/Chinook-Abridged-rest-api/artists?name="+artistTxt.val();
         }
         $.ajax({
             url: artistUrl,
@@ -281,7 +286,7 @@ $(document).ready(function(){
                             "name":value
                         };
                         let id = valueOfElement["ArtistId"];
-                        let putUrl = "http://localhost/Chinook-Abridged-rest-api/artists/"+id;
+                        let putUrl = baseUrl+extArtists+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/artists/"+id;
 
                         // update the artist with ajax
                         $.ajax({
@@ -307,7 +312,7 @@ $(document).ready(function(){
 
                     confirmBtn.on("click", function(e){
                         let id = valueOfElement["ArtistId"];
-                        let deleteUrl = "http://localhost/Chinook-Abridged-rest-api/artists/"+id;
+                        let deleteUrl = baseUrl+extArtists+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/artists/"+id;
                         $.ajax({
                             url: deleteUrl,
                             type: "DELETE",

@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
+    const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
+    const extCustomers = "customers";
     $("#signupForm").on("submit", function(e){
         // e.preventDefault();
         const formData = $("#signupForm").serialize();
         $.ajax({
-            url: "http://localhost/Chinook-Abridged-rest-api/customers",
+            url: baseUrl+extCustomers,//"http://localhost/Chinook-Abridged-rest-api/customers",
             type: "POST",
             data: formData
         })

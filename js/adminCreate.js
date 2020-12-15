@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+    const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
+    const extTracks = "tracks";
+    const extArtists = "artists";
+    const extAlbums = "albums";
+
     $("#createTrackBtn").on("click", function(e){
         const modal = $("#createTrackModal");
         modal[0].style.display = "block";
@@ -7,7 +13,7 @@ $(document).ready(function(){
             const formData = $("#createTrackModalForm").serialize();
 
             $.ajax({
-                url: "http://localhost/Chinook-Abridged-rest-api/tracks",
+                url: baseUrl+extTracks, //"http://localhost/Chinook-Abridged-rest-api/tracks",
                 type: "POST",
                 data: formData,
                 succes: function(response){
@@ -28,7 +34,7 @@ $(document).ready(function(){
             const formData = $("#createAlbumModalForm").serialize();
 
             $.ajax({
-                url: "http://localhost/Chinook-Abridged-rest-api/albums",
+                url: baseUrl+extAlbums, //"http://localhost/Chinook-Abridged-rest-api/albums",
                 type: "POST",
                 data: formData,
                 succes: function(response){
@@ -47,7 +53,7 @@ $(document).ready(function(){
         $("#createArtistModalForm").on("submit", function(data){
             const formData = $("#createArtistModalForm").serialize();
             $.ajax({
-                url: "http://localhost/Chinook-Abridged-rest-api/artists",
+                url: baseUrl+extArtists,//"http://localhost/Chinook-Abridged-rest-api/artists",
                 type: "POST",
                 data: formData,
                 succes: function(response){
