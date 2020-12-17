@@ -2,10 +2,7 @@ $(document).ready(function(){
 
     const baseUrl = "http://chinookabridgedapi-env.eba-nh3f5aui.us-east-1.elasticbeanstalk.com/index.php/";
     const extTracks = "tracks";
-    const extArtists = "artists";
-    const extAlbums = "albums";
     const extInvoices = "invoices";
-    const extInvoiceLines = "invoicelines"
     const extCustomers = "customers"
 
     const table = $("#invoiceCartTable");
@@ -76,12 +73,6 @@ $(document).ready(function(){
 
     $("#invoiceSubmitForm").on("submit", function(e){
 
-        let address =$("#invoiceBillingAddress").val();
-        let city =$("#invoiceBillingCity").val();
-        let state =$("#invoiceBillingState").val();
-        let country =$("#invoiceBillingCountry").val();
-        let postalCode =$("#invoiceBillingPostalCode").val();
-
         let invoiceLines= [];
         for (let i = 0; i < cartItems.length; i++) {
             const track = cartItems[i];
@@ -92,14 +83,14 @@ $(document).ready(function(){
             };
             invoiceLines.push(invoiceLineData);
         }
-        
+        alert(invoiceLines);
         invoiceData = {
-            "customerId": parseInt(customerId),
-            "billindAddress": address,
-            "billingCity": city,
-            "billingState": state,
-            "billingCountry": country,
-            "billingPostalCode": postalCode,
+            "customerId": customerId,
+            "billindAddress": $("#invoiceBillingAddress").val(),
+            "billingCity": $("#invoiceBillingCity").val(),
+            "billingState": $("#invoiceBillingState").val(),
+            "billingCountry": $("#invoiceBillingCountry").val(),
+            "billingPostalCode": $("#invoiceBillingPostalCode").val(),
             "total": parseFloat(TotalInvoicePrice(cartItems)),
             "invoiceLines": invoiceLines
         };
@@ -110,35 +101,6 @@ $(document).ready(function(){
             data: invoiceData
         }).done(function(response){
             alert(JSON.stringify(response));
-            // const invoiceID = response.InvoiceId;
-            // let async_request= [];
-            // let responses= [];
-            // let requestBodies= [];
-
-            // for (let i = 0; i < cartItems.length; i++) {
-            //     const element = cartItems[i];
-            //     invoiceLineData = {
-            //         "invoiceId": parseInt(invoiceID),
-            //         "quantity": parseInt(element["quantity"]),
-            //         "trackId": parseInt(element["trackId"]),
-            //         "unitPrice": parseFloat(ogPrices[i])
-            //     };
-            //     requestBodies.push(invoiceLineData);
-            // }
-
-            // for(i in requestBodies)
-            // {
-            //     async_request.push($.ajax({
-            //         url: baseUrl+extInvoiceLines,
-            //         method: "POST",
-            //         data: requestBodies[i]
-            //     }).done(function(response){
-            //         responses.push(JSON.stringify(response));
-            //     }).fail(function(response){
-            //         alert("FAILED TO CREATE INVOICELINE");
-            //     }));
-            // }
-
         }).fail(function(){
             alert("FAILED TO CREATE INVOICE");
         });
@@ -149,20 +111,14 @@ $(document).ready(function(){
         modal[0].style.display = "block";
 
         $("#editProfileForm").on("submit", function(e){
-            let firstName = $("#editFirstName").val();
-            let lastName = $("#editLastName").val();
-            let email = $("#editEmail").val();
-            let company = $("#editCompany").val();
-            let phone = $("#editPhone").val();
-            let fax = $("#editFax").val();
             formData = {
                 "customerId": customerId,
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
-                "company": company,
-                "phone": phone,
-                "fax": fax
+                "firstName":  $("#editFirstName").val(),
+                "lastName": $("#editLastName").val(),
+                "email": $("#editEmail").val(),
+                "company": $("#editCompany").val(),
+                "phone": $("#editPhone").val(),
+                "fax": $("#editFax").val()
             };
             UpdateRequest(formData);
         })
@@ -172,18 +128,13 @@ $(document).ready(function(){
         modal[0].style.display = "block";
 
         $("#editShippingForm").on("submit", function(e){
-            let address =$("#editAddress").val();
-            let city =$("#editCity").val();
-            let state =$("#editState").val();
-            let country =$("#editCountry").val();
-            let postalCode =$("#editPostalCode").val();
             formData = {
                 "customerId": customerId,
-                "address": address,
-                "city": city,
-                "state": state,
-                "country": country,
-                "postalCode": postalCode
+                "address": $("#editAddress").val(),
+                "city": $("#editCity").val(),
+                "state": $("#editState").val(),
+                "country": $("#editCountry").val(),
+                "postalCode": $("#editPostalCode").val()
             };
             UpdateRequest(formData);
         })
@@ -193,10 +144,9 @@ $(document).ready(function(){
         modal[0].style.display = "block";
 
         $("#edittPasswordForm").on("submit", function(e){
-            password = $("#newPassword").val();
             formData = {
                 "customerId": customerId,
-                "password": password
+                "password": $("#newPassword").val()
             };
             UpdateRequest(formData);
         })
@@ -221,8 +171,8 @@ $(document).ready(function(){
     function UpdateRequest(formData){
         $.ajax({
             url: baseUrl+extCustomers,
-            type: "PUT",
-            data: JSON.stringify(formData)
+            type: "POST",
+            data: formData
         })
         .done(function(response){
             alert("Success: " + response);

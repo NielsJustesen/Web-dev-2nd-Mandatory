@@ -57,24 +57,21 @@ $(document).ready(function(){
                     modal[0].style.display = "block";
                     // the PUT form for sending the request for the api
                     $("#trackModalForm").on("submit", function(e){
-                        formData = {
-                            "trackId": valueOfElement["TrackId"],
-                            "name": $("#modalTrackName").val(),
-                            "albumId": parseInt($("#modalTrackAlbumId").val()),
-                            "composer": $("#modalTrackComposer").val(),
-                            "milliseconds": $("#modalTrackLength").val(),
-                            "bytes": $("#modalTrackBytes").val(),
-                            "unitPrice": $("#modalTrackUnitPrice").val(),
-                            "mediaTypeId":parseInt($("#modalTrackMediaTypeId").val()),
-                            "genreId": parseInt($("#modalTrackGenreId").val())
-                        }
-
                         // update the track with ajax
                         $.ajax({
                             url: baseUrl+extTracks,
                             type: "POST",
-                            contentType: 'application/json',
-                            data: JSON.stringify(formData)
+                            data: {
+                                "trackId": valueOfElement["TrackId"],
+                                "name": $("#modalTrackName").val(),
+                                "albumId": parseInt($("#modalTrackAlbumId").val()),
+                                "composer": $("#modalTrackComposer").val(),
+                                "milliseconds": $("#modalTrackLength").val(),
+                                "bytes": $("#modalTrackBytes").val(),
+                                "unitPrice": $("#modalTrackUnitPrice").val(),
+                                "mediaTypeId":parseInt($("#modalTrackMediaTypeId").val()),
+                                "genreId": parseInt($("#modalTrackGenreId").val())
+                            }
                         }).done(function(response){
                             alert("SUCCESS "+JSON.stringify(response));
                         }).fail(function(e){
@@ -167,19 +164,15 @@ $(document).ready(function(){
 
                     // the PUT form for sending the request for the api
                     $("#albumModalForm").on("submit", function(e){
-
-                        formData = {
-                            "albumId": valueOfElement["AlbumId"],
-                            "title": $("#modalAlbumTitle").val(),
-                            "artistId": $("#modalAlbumArtistId").val()
-                        }
-                        
                         // update the album with ajax
                         $.ajax({
                             url: baseUrl+extAlbums,
                             type: "POST",
-                            contentType: 'application/json',
-                            data: JSON.stringify(formData)
+                            data: {
+                                "albumId": valueOfElement["AlbumId"],
+                                "title": $("#modalAlbumTitle").val(),
+                                "artistId": $("#modalAlbumArtistId").val()
+                            }
                         }).done(function(response){
                             alert(JSON.stringify(response));
                         }).fail(function(e){
@@ -266,16 +259,14 @@ $(document).ready(function(){
                     
                     // the PUT form for sending the request for the api
                     $("#artistModalForm").on("submit", function(e){
-                        formData = {
-                            "artistId": valueOfElement["ArtistId"],
-                            "name": $("#modalArtistName").val()
-                        }
                         // update the artist with ajax
                         $.ajax({
                             url: baseUrl+extArtists,
                             type: "POST",
-                            contentType: 'application/json',
-                            data: JSON.stringify(formData)
+                            data: {
+                                "artistId": valueOfElement["ArtistId"],
+                                "name": $("#modalArtistName").val()
+                            }
                         }).done(function(response){
                             alert(JSON.stringify(response));
                             modal[0].style.display = "none";

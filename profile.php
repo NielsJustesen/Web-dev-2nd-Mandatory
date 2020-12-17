@@ -152,7 +152,7 @@
             </div>
         </div>
         <div id="editPasswordModal" class="modal">
-            <div id="editPasswordModalContent">
+            <div id="editPasswordModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="edittPasswordForm" method="POST" class="profileForm">
                     <p>New Password</p>
