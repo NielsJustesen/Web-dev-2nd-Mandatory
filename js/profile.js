@@ -81,6 +81,18 @@ $(document).ready(function(){
         let state =$("#invoiceBillingState").val();
         let country =$("#invoiceBillingCountry").val();
         let postalCode =$("#invoiceBillingPostalCode").val();
+
+        let invoiceLines= [];
+        for (let i = 0; i < cartItems.length; i++) {
+            const track = cartItems[i];
+            invoiceLineData = {
+                "quantity": parseInt(track["quantity"]),
+                "trackId": parseInt(track["trackId"]),
+                "unitPrice": parseFloat(ogPrices[i])
+            };
+            invoiceLines.push(invoiceLineData);
+        }
+        
         invoiceData = {
             "customerId": parseInt(customerId),
             "billindAddress": address,
@@ -88,42 +100,44 @@ $(document).ready(function(){
             "billingState": state,
             "billingCountry": country,
             "billingPostalCode": postalCode,
-            "total": parseFloat(TotalInvoicePrice(cartItems))
+            "total": parseFloat(TotalInvoicePrice(cartItems)),
+            "invoiceLines": invoiceLines
         };
+        
         $.ajax({
             url: baseUrl+extInvoices,
             type: "POST",
             data: invoiceData
         }).done(function(response){
+            alert(JSON.stringify(response));
+            // const invoiceID = response.InvoiceId;
+            // let async_request= [];
+            // let responses= [];
+            // let requestBodies= [];
 
-            const invoiceID = response.InvoiceId;
-            let async_request= [];
-            let responses= [];
-            let requestBodies= [];
+            // for (let i = 0; i < cartItems.length; i++) {
+            //     const element = cartItems[i];
+            //     invoiceLineData = {
+            //         "invoiceId": parseInt(invoiceID),
+            //         "quantity": parseInt(element["quantity"]),
+            //         "trackId": parseInt(element["trackId"]),
+            //         "unitPrice": parseFloat(ogPrices[i])
+            //     };
+            //     requestBodies.push(invoiceLineData);
+            // }
 
-            for (let i = 0; i < cartItems.length; i++) {
-                const element = cartItems[i];
-                invoiceLineData = {
-                    "invoiceId": parseInt(invoiceID),
-                    "quantity": parseInt(element["quantity"]),
-                    "trackId": parseInt(element["trackId"]),
-                    "unitPrice": parseFloat(ogPrices[i])
-                };
-                requestBodies.push(invoiceLineData);
-            }
-
-            for(i in requestBodies)
-            {
-                async_request.push($.ajax({
-                    url: baseUrl+extInvoiceLines,
-                    method: "POST",
-                    data: requestBodies[i]
-                }).done(function(response){
-                    responses.push(JSON.stringify(response));
-                }).fail(function(response){
-                    alert("FAILED TO CREATE INVOICELINE");
-                }));
-            }
+            // for(i in requestBodies)
+            // {
+            //     async_request.push($.ajax({
+            //         url: baseUrl+extInvoiceLines,
+            //         method: "POST",
+            //         data: requestBodies[i]
+            //     }).done(function(response){
+            //         responses.push(JSON.stringify(response));
+            //     }).fail(function(response){
+            //         alert("FAILED TO CREATE INVOICELINE");
+            //     }));
+            // }
 
         }).fail(function(){
             alert("FAILED TO CREATE INVOICE");

@@ -116,7 +116,7 @@
         <div id="editProfileModal" class="modal">
             <div id="editProfileModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form action="profile.php" id="editProfileForm" method="PUT" class="profileForm">
+                <form action="profile.php" id="editProfileForm" method="POST" class="profileForm">
                     <p>First Name</p>
                     <input type="text" name="fisrtName" id="editFirstName" value="<?=$firstName?>" required>
                     <p>Last Name</p>
@@ -136,7 +136,7 @@
         <div id="editShippingModal" class="modal">
             <div id="editShippingModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form action="profile.php" id="editShippingForm" method="PUT" class="profileForm">
+                <form action="profile.php" id="editShippingForm" method="POST" class="profileForm">
                     <p>Address</p>
                     <input type="text" name="address" id="editAddress" value="<?=$address?>" required>
                     <p>City</p>
@@ -154,7 +154,7 @@
         <div id="editPasswordModal" class="modal">
             <div id="editPasswordModalContent">
                 <span class="closeForm">&times;</span>
-                <form action="profile.php" id="edittPasswordForm" method="PUT" class="profileForm">
+                <form action="profile.php" id="edittPasswordForm" method="POST" class="profileForm">
                     <p>New Password</p>
                     <input type="password" name="password" id="newPassword">
                     <input type="submit" value="Confirm">

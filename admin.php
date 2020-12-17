@@ -53,7 +53,7 @@
         <div id="trackModal" class="modal">
             <div id="trackModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="trackModalForm" method="PUT" class="modalForm">
+                <form id="trackModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Edit song</legend>
                         <label>Name</label>
@@ -112,7 +112,7 @@
         <div id="albumModal" class="modal">
             <div id="albumModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="albumModalForm" method="PUT" class="modalForm">
+                <form id="albumModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Edit Album</legend>
                         <label>Title</label>
@@ -127,7 +127,7 @@
         <div id="artistModal" class="modal">
             <div id="artistModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="artistModalForm" method="PUT" class="modalForm">
+                <form id="artistModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Edit Artist</legend>
                         <label>Name</label>

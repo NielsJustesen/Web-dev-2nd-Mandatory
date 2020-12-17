@@ -67,6 +67,7 @@ $(document).ready(function(){
                         genre = parseInt($("#modalTrackGenreId").val());
 
                         formData = {
+                            "trackId": parseInt(valueOfElement["TrackId"]),
                             "name": name,
                             "albumId": albumId,
                             "mediaTypeId": mediaType,
@@ -82,7 +83,7 @@ $(document).ready(function(){
                         // update the track with ajax
                         $.ajax({
                             url: putUrl,
-                            type: "PUT",
+                            type: "POST",
                             contentType: 'application/json',
                             data: JSON.stringify(formData)
                         }).done(function(response){
@@ -181,6 +182,7 @@ $(document).ready(function(){
                         albumTitle = $("#modalAlbumTitle").val();
                         artistId = parseInt($("#modalAlbumArtistId").val());
                         formData = {
+                            "albumId": parseInt(valueOfElement["AlbumId"]),
                             "title": albumTitle,
                             "artistId": artistId
                         };
@@ -191,7 +193,7 @@ $(document).ready(function(){
                         // update the album with ajax
                         $.ajax({
                             url: putUrl,
-                            type: "PUT",
+                            type: "POST",
                             contentType: 'application/json',
                             data: JSON.stringify(formData)
                         }).done(function(response){
@@ -284,6 +286,7 @@ $(document).ready(function(){
                     $("#artistModalForm").on("submit", function(e){
                         value = $("#modalArtistName").val();
                         formData = {
+                            "artistId": parseInt(valueOfElement["ArtistId"]),
                             "name":value
                         };
                         let id = parseInt(valueOfElement["ArtistId"]);
@@ -292,7 +295,7 @@ $(document).ready(function(){
                         // update the artist with ajax
                         $.ajax({
                             url: putUrl,
-                            type: "PUT",
+                            type: "POST",
                             contentType: 'application/json',
                             data: JSON.stringify(formData)
                         }).done(function(response){
