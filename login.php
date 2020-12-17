@@ -42,7 +42,7 @@
             $cookieName = "CustomerID".$_SESSION["customerId"];
             if(!isset($_COOKIE[$cookieName])){
                 $cart = array();
-                setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
+                setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", null, false, true);
             }
         }
     } 

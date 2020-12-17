@@ -73,7 +73,7 @@
                         foreach ($cart as $key => $value) {
                             unset($cart[$key]);
                         }
-                        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
+                        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", null, false, true);
                 ?>
                         <p><b>Thank you for your purchase!</b></p>
                 <?php
@@ -92,7 +92,7 @@
                         $cookieName = "CustomerID".$_SESSION["customerId"];
                         if(isset($toRemove)){
                             unset($cart[$toRemove]);
-                            setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
+                            setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", null, false, true);
                         }
                         $totalprice = 0;
                         $trackIndex = 0;
@@ -161,7 +161,7 @@
                 </form>
             </div>
         </div>
-        <div id="purchaseModal" class="model">
+        <div id="purchaseModal" class="modal">
             <div id="purchaseModalContent" class="modalContent">
                 <span id="cancelInvoiceBtn" class="closeForm">&times;</span>
                 <form id="invoiceSubmitForm" action="profile.php" method="POST">
