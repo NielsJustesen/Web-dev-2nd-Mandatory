@@ -77,32 +77,30 @@ $(document).ready(function(){
         for (let i = 0; i < cartItems.length; i++) {
             const track = cartItems[i];
             invoiceLineData = {
-                "quantity": parseInt(track["quantity"]),
+                "quantity": track["quantity"],
                 "trackId": parseInt(track["trackId"]),
                 "unitPrice": parseFloat(ogPrices[i])
             };
             invoiceLines.push(invoiceLineData);
         }
-        alert(invoiceLines);
-        invoiceData = {
-            "customerId": customerId,
-            "billindAddress": $("#invoiceBillingAddress").val(),
-            "billingCity": $("#invoiceBillingCity").val(),
-            "billingState": $("#invoiceBillingState").val(),
-            "billingCountry": $("#invoiceBillingCountry").val(),
-            "billingPostalCode": $("#invoiceBillingPostalCode").val(),
-            "total": parseFloat(TotalInvoicePrice(cartItems)),
-            "invoiceLines": invoiceLines
-        };
         
         $.ajax({
             url: baseUrl+extInvoices,
             type: "POST",
-            data: invoiceData
+            data: {
+                "customerId": customerId,
+                "billindAddress": $("#invoiceBillingAddress").val(),
+                "billingCity": $("#invoiceBillingCity").val(),
+                "billingState": $("#invoiceBillingState").val(),
+                "billingCountry": $("#invoiceBillingCountry").val(),
+                "billingPostalCode": $("#invoiceBillingPostalCode").val(),
+                "total": parseFloat(TotalInvoicePrice(cartItems)),
+                "invoiceLines": invoiceLines
+            }
         }).done(function(response){
-            alert(JSON.stringify(response));
-        }).fail(function(){
-            alert("FAILED TO CREATE INVOICE");
+            alert(response);
+        }).fail(function(e){
+            alert("ERROR: Could not create invoice");
         });
     })
 

@@ -168,15 +168,15 @@
                     <fieldset id="invoiceShipping">
                         <legend>Invoice</legend>
                         <p>Billing Address</p>
-                        <input type="text" id="invoiceBillingAddress" value="<?=$address?>">
+                        <input type="text" id="invoiceBillingAddress" value="<?=$address?>" required>
                         <p>Billing City</p>
-                        <input type="text" id="invoiceBillingCity" value="<?=$city?>">
+                        <input type="text" id="invoiceBillingCity" value="<?=$city?>" required>
                         <p>Billing State</p>
-                        <input type="text" id="invoiceBillingState" value="<?=$state?>">
+                        <input type="text" id="invoiceBillingState" value="<?=$state?>" required>
                         <p>Billing Country</p>
-                        <input type="text" id="invoiceBillingCountry" value="<?=$country?>">
+                        <input type="text" id="invoiceBillingCountry" value="<?=$country?>" required>
                         <p>Billing Postal Code</p>
-                        <input type="text" id="invoiceBillingPostalCode" value="<?=$postalCode?>"><br>
+                        <input type="text" id="invoiceBillingPostalCode" value="<?=$postalCode?>" required><br>
                     </fieldset>
                     <fieldset id="invoiceCart">
                         <legend>Cart</legend>
