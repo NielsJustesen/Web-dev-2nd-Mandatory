@@ -1,10 +1,8 @@
 <?php
     if (isset($_SESSION["role"]) && $_SESSION["role"] === "Customer") {
-        header("Location: http://localhost/Chinook_Abridged/profile.php");
-        exit;
+        header("Location: profile.php");
     } else if (isset($_SESSION["role"]) && $_SESSION["role"] === "Admin") {
-        header("Location: http://localhost/Chinook_Abridged/admin.php");
-        exit;
+        header("Location: admin.php");
     }
     
     $validation = "false";
@@ -54,6 +52,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="script-src http://chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com/js/">
         <title>Chinook Abridged</title>
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/jquery-3.5.1.js"></script>

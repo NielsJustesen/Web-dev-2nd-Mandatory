@@ -58,13 +58,13 @@ $(document).ready(function(){
                     // the PUT form for sending the request for the api
                     $("#trackModalForm").on("submit", function(e){
                         name = $("#modalTrackName").val();
-                        albumId = $("#modalTrackAlbumId").val();
+                        albumId = parseInt($("#modalTrackAlbumId").val());
                         composer = $("#modalTrackComposer").val();
                         length = $("#modalTrackLength").val();
                         size = $("#modalTrackBytes").val();
                         price = $("#modalTrackUnitPrice").val();
-                        mediaType = $("#modalTrackMediaTypeId").val();
-                        genre = $("#modalTrackGenreId").val();
+                        mediaType = parseInt($("#modalTrackMediaTypeId").val());
+                        genre = parseInt($("#modalTrackGenreId").val());
 
                         formData = {
                             "name": name,
@@ -76,9 +76,9 @@ $(document).ready(function(){
                             "bytes": size,
                             "unitPrice": price
                         };
-                        let id = valueOfElement["TrackId"];
+                        let id = parseInt(valueOfElement["TrackId"]);
                         let putUrl = baseUrl+extTracks+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
-                        
+                        alert(JSON.stringify(formData));
                         // update the track with ajax
                         $.ajax({
                             url: putUrl,
@@ -102,7 +102,7 @@ $(document).ready(function(){
                     let cancelBtn = $("#cancelTrackDelete");
 
                     confirmBtn.on("click", function(e){
-                        let id = valueOfElement["TrackId"];
+                        let id = parseInt(valueOfElement["TrackId"]);
                         let deleteUrl = baseUrl+extTracks+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/tracks/"+id;
                         $.ajax({
                             url: deleteUrl,
@@ -179,14 +179,15 @@ $(document).ready(function(){
                     // the PUT form for sending the request for the api
                     $("#albumModalForm").on("submit", function(e){
                         albumTitle = $("#modalAlbumTitle").val();
-                        artistId = $("#modalAlbumArtistId").val();
+                        artistId = parseInt($("#modalAlbumArtistId").val());
                         formData = {
                             "title": albumTitle,
                             "artistId": artistId
                         };
-                        let id = valueOfElement["AlbumId"];
+                        let id = parseInt(valueOfElement["AlbumId"]);
                         let putUrl = baseUrl+extAlbums+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/albums/"+id;
-                       
+                        alert(JSON.stringify(formData));
+                        
                         // update the album with ajax
                         $.ajax({
                             url: putUrl,
@@ -211,7 +212,7 @@ $(document).ready(function(){
                     let cancelBtn = $("#cancelAlbumDelete");
 
                     confirmBtn.on("click", function(e){
-                        let id = valueOfElement["AlbumId"];
+                        let id = parseInt(valueOfElement["AlbumId"]);
                         let deleteUrl = baseUrl+extAlbums+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/albums/"+id;
                         $.ajax({
                             url: deleteUrl,
@@ -285,7 +286,7 @@ $(document).ready(function(){
                         formData = {
                             "name":value
                         };
-                        let id = valueOfElement["ArtistId"];
+                        let id = parseInt(valueOfElement["ArtistId"]);
                         let putUrl = baseUrl+extArtists+"/"+id;  //"http://localhost/Chinook-Abridged-rest-api/artists/"+id;
 
                         // update the artist with ajax
@@ -311,7 +312,7 @@ $(document).ready(function(){
                     let cancelBtn = $("#cancelArtistDelete");
 
                     confirmBtn.on("click", function(e){
-                        let id = valueOfElement["ArtistId"];
+                        let id = parseInt(valueOfElement["ArtistId"]);
                         let deleteUrl = baseUrl+extArtists+"/"+id; //"http://localhost/Chinook-Abridged-rest-api/artists/"+id;
                         $.ajax({
                             url: deleteUrl,

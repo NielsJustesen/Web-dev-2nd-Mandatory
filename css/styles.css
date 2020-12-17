@@ -377,7 +377,7 @@ h3 {
     width: 10em;
 }
 
-#trackModalContent, #albumModalContent, #artistModalContent, #createTrackModalContent, #createAlbumModalContent, #createArtistModalContent, #confirmTrackModalContent, #confirmArtistModalContent, #confirmAlbumModalContent, #editProfileModalContent, #editShippingModalContent, #editPasswordModalContent, #purchaseModalContent {
+.modalContent {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -387,7 +387,7 @@ h3 {
     border-radius: 20px;
 }
 
-#trackModal, #albumModal, #artistModal, #createTrackModal, #createAlbumModal, #createArtistModal, #confirmTrackModal, #confirmArtistModal, #confirmAlbumModal, #editProfileModal, #editShippingModal, #editPasswordModal, #purchaseModal {
+.modal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -400,12 +400,12 @@ h3 {
     background-color: rgb(0 0 0 / 75%);
 }
 
-#trackModalForm, #artistModalForm, #albumModalForm, #createTrackModalForm, #createAlbumModalForm, #createArtistModalForm {
+.modalForm {
     display: table-caption;
     width: 30em;
 }
 
-#confirmTrackDelete, #confirmArtistDelete, #confirmAlbumDelete {
+.confirmDelete {
     border-radius: 20px;
     padding: 1em;
     font-size: larger;
@@ -414,7 +414,7 @@ h3 {
     background-color: black;
 }
 
-#cancelTrackDelete, #cancelArtistDelete, #cancelAlbumDelete {
+.cancelDelete {
     border-radius: 20px;
     padding: 1em;
     font-size: larger;

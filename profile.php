@@ -1,7 +1,5 @@
 <?php
-    if(!isset($_SESSION)){
-        session_start();
-    }
+    session_start();
     if(isset($_GET["trackIndex"])) {
         $toRemove = $_GET["trackIndex"];
     }
@@ -21,12 +19,20 @@
         $cookieName = "CustomerID".$_SESSION["customerId"];
         $cart = unserialize($_COOKIE[$cookieName]);
     }
+    else {
+        header("Location: login.php");
+    }
+
+    function e($text) {
+        return htmlspecialchars($text, ENT_COMPAT|ENT_HTML5, 'UTF-8', false);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="script-src http://chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com/js/">
         <title>Chinook Abridged</title>
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/jquery-3.5.1.js"></script>
@@ -42,20 +48,20 @@
         <div id="profile">
             <fieldset id="profileInfo">
                 <legend>Profile</legend>
-                <span>First name: <?=$firstName?></span><br>
-                <span>Last name: <?=$lastName?></span><br>
-                <span>Email: <?=$email?></span><br>
-                <span>Company: <?=$company?></span><br>
-                <span>Phone: <?=$phone?></span><br>
-                <span>Fax: <?=$fax?></span><br>
+                <span>First name:<?php echo e($firstName); ?></span><br>
+                <span>Last name:<?php echo e($lastName); ?></span><br>
+                <span>Email:<?php echo e($email);?></span><br>
+                <span>Company: <?php echo e($company);?></span><br>
+                <span>Phone: <?php echo e($phone);?></span><br>
+                <span>Fax: <?php echo e($fax);?></span><br>
                 <input type="image" id="editProlie" src="imgs/edit.png" class="editBtn">
                 <fieldset id="shipping">
                     <legend>Shipping</legend>
-                    <span id="infoAddress">Address: <?=$address?></span><br>
-                    <span id="infoCity">City: <?=$city?></span><br>
-                    <span id="infoState">State: <?=$state?></span><br>
-                    <span id="infoCountry">Country: <?=$country?></span><br>
-                    <span id="infoPostalCode">Postal Code: <?=$postalCode?></span><br>
+                    <span id="infoAddress">Address: <?php echo e($address);?></span><br>
+                    <span id="infoCity">City: <?php echo e($city);?></span><br>
+                    <span id="infoState">State: <?php echo e($state);?></span><br>
+                    <span id="infoCountry">Country: <?php echo e($country);?></span><br>
+                    <span id="infoPostalCode">Postal Code: <?php echo e($postalCode);?></span><br>
                     <input type="image" id="editShipping" src="imgs/edit.png" class="editBtn">
                 </fieldset>
                 <input type="button" id="editPassword" value="Change Password">
@@ -93,9 +99,9 @@
                         foreach ($cart as $key => $value){
                     ?>
                             <tr class="cartRow" id=<?=$key?>>
-                                <td class="songName" value=<?=$value["Name"]?>><?=$value["Name"]?></td>
-                                <td class="songPrice" id="songPrice<?=$key?>" value=<?=$value["Price"]?>><?=$value["Price"]?></td>
-                                <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$trackIndex?>" min="1" value=1  ></td>
+                                <td class="songName" value=<?=$value["Name"]?>><?php echo e($value["Name"])?></td>
+                                <td class="songPrice" id="songPrice<?=$key?>" value=<?=$value["Price"]?>><?php echo e($value["Price"])?></td>
+                                <td class="songQuantity"><input type="number" class="songQuantInput" id="songIndex<?=$trackIndex?>" min="1" value=1 ></td>
                                 <td class="songRemove"><input type="image" src="imgs/trash.png" class="removeCartItemBtn"></td>
                             </tr>
                     <?php
@@ -108,7 +114,7 @@
             </fieldset>
         </div>
         <div id="editProfileModal" class="modal">
-            <div id="editProfileModalContent">
+            <div id="editProfileModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="editProfileForm" method="PUT" class="profileForm">
                     <p>First Name</p>
@@ -128,7 +134,7 @@
             </div>
         </div>
         <div id="editShippingModal" class="modal">
-            <div id="editShippingModalContent">
+            <div id="editShippingModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
                 <form action="profile.php" id="editShippingForm" method="PUT" class="profileForm">
                     <p>Address</p>
@@ -156,7 +162,7 @@
             </div>
         </div>
         <div id="purchaseModal" class="model">
-            <div id="purchaseModalContent">
+            <div id="purchaseModalContent" class="modalContent">
                 <span id="cancelInvoiceBtn" class="closeForm">&times;</span>
                 <form id="invoiceSubmitForm" action="profile.php" method="POST">
                     <fieldset id="invoiceShipping">

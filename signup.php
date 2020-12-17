@@ -1,6 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src http://chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com/js/">
     <title>Chinook Abridged</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.5.1.js"></script>
@@ -38,8 +39,6 @@
             <input type="email" name="email" id="emailtxt" required>
             <label for="passwordtxt">Password</label>
             <input type="password" name="password" id="passwordtxt" required>
-            <!-- <label for="confirmpasswordtxt">Confirm password</label> -->
-            <!-- <input type="password" name="confirmpassword" id="confirmpasswordtxt" > -->
             <input type="submit" value="Register" id="signupBtn">
         </fieldset>
         <?php

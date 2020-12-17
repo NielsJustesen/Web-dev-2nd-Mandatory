@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src http://chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com/js/">
     <title>Chinook Abridged</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.5.1.js"></script>
@@ -50,9 +51,9 @@
             </div>
         </main>
         <div id="trackModal" class="modal">
-            <div id="trackModalContent">
+            <div id="trackModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="trackModalForm" method="PUT">
+                <form id="trackModalForm" method="PUT" class="modalForm">
                     <fieldset>
                         <legend>Edit song</legend>
                         <label>Name</label>
@@ -109,9 +110,9 @@
             </div>
         </div>
         <div id="albumModal" class="modal">
-            <div id="albumModalContent">
+            <div id="albumModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="albumModalForm" method="PUT">
+                <form id="albumModalForm" method="PUT" class="modalForm">
                     <fieldset>
                         <legend>Edit Album</legend>
                         <label>Title</label>
@@ -124,9 +125,9 @@
             </div>
         </div>
         <div id="artistModal" class="modal">
-            <div id="artistModalContent">
+            <div id="artistModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="artistModalForm" method="PUT">
+                <form id="artistModalForm" method="PUT" class="modalForm">
                     <fieldset>
                         <legend>Edit Artist</legend>
                         <label>Name</label>
@@ -137,9 +138,9 @@
             </div>
         </div>
         <div id="createTrackModal" class="modal">
-            <div id="createTrackModalContent">
+            <div id="createTrackModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="createTrackModalForm" method="POST">
+                <form id="createTrackModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Create song</legend>
                         <label>Name</label>
@@ -196,9 +197,9 @@
             </div>
         </div>
         <div id="createAlbumModal" class="modal">
-            <div id="createAlbumModalContent">
+            <div id="createAlbumModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="createAlbumModalForm" method="POST">
+                <form id="createAlbumModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Create Album</legend>
                         <label>Title</label>
@@ -211,9 +212,9 @@
             </div>
         </div>
         <div id="createArtistModal" class="modal">
-            <div id="createArtistModalContent">
+            <div id="createArtistModalContent" class="modalContent">
                 <span class="closeForm">&times;</span>
-                <form id="createArtistModalForm" method="POST">
+                <form id="createArtistModalForm" method="POST" class="modalForm">
                     <fieldset>
                         <legend>Create Artist</legend>
                         <label>Name</label>
@@ -224,21 +225,21 @@
             </div>
         </div>
         <div id="confirmTrackModal" class="modal">
-            <div id="confirmTrackModalContent">
-                <input type="image" src="imgs/accept.png" id="confirmTrackDelete" value="Confirm">
-                <input type="image" src="imgs/cancel.png" id="cancelTrackDelete" value="Cancel">
+            <div id="confirmTrackModalContent" class="modalContent">
+                <input type="image" src="imgs/accept.png" id="confirmTrackDelete" class="confirmDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelTrackDelete" class="cancelDelete" value="Cancel">
             </div>
         </div>
         <div id="confirmAlbumModal" class="modal">
-            <div id="confirmAlbumModalContent">
-                <input type="image" src="imgs/accept.png" id="confirmAlbumDelete" value="Confirm">
-                <input type="image" src="imgs/cancel.png" id="cancelAlbumDelete" value="Cancel">
+            <div id="confirmAlbumModalContent" class="modalContent">
+                <input type="image" src="imgs/accept.png" id="confirmAlbumDelete" class="confirmDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelAlbumDelete" class="cancelDelete" value="Cancel">
             </div>
         </div>
         <div id="confirmArtistModal" class="modal">
-            <div id="confirmArtistModalContent">
-                <input type="image" src="imgs/accept.png" id="confirmArtistDelete" value="Confirm">
-                <input type="image" src="imgs/cancel.png" id="cancelArtistDelete" value="Cancel">
+            <div id="confirmArtistModalContent" class="modalContent">
+                <input type="image" src="imgs/accept.png" id="confirmArtistDelete" class="confirmDelete" value="Confirm">
+                <input type="image" src="imgs/cancel.png" id="cancelArtistDelete" class="cancelDelete" value="Cancel">
             </div>
         </div>
         <?php

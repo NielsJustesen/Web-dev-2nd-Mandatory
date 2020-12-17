@@ -214,9 +214,9 @@ $(document).ready(function(){
             data: JSON.stringify(formData)
         })
         .done(function(response){
-            alert(response);
+            alert("Success: " + response);
         }).fail(function(response){
-            alert(response);
+            alert("Failed: " + response);
         })
     }
 

@@ -13,10 +13,9 @@
         public $postalCode;
         public $phone;
         public $fax;
-
+        
         protected $pdo;
 
-        //Connect to the database
         public function __construct() {
             $server = "chinookabridgeddb.cxypwdfo5x68.us-east-1.rds.amazonaws.com";
             $port = 3306;
@@ -39,7 +38,6 @@
             }
         }
 
-        //disconnect from the database
         public function disconnect() {
             $this->pdo = null;
         }
