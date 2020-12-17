@@ -14,7 +14,7 @@
                 }
                 if(!$containsTrack){
                     array_push($tracks, $newTrack);
-                    setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/");
+                    setcookie($cookieName, serialize($tracks), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
                 }
             }
         }

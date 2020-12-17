@@ -12,7 +12,6 @@
     <?php
         session_start();
         if(isset($_POST["logout"])){
-            echo "destroying session";
             session_destroy();
         }
         if(!isset($_SESSION["role"])){

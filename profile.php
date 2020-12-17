@@ -73,7 +73,7 @@
                         foreach ($cart as $key => $value) {
                             unset($cart[$key]);
                         }
-                        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
+                        setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
                 ?>
                         <p><b>Thank you for your purchase!</b></p>
                 <?php
@@ -92,7 +92,7 @@
                         $cookieName = "CustomerID".$_SESSION["customerId"];
                         if(isset($toRemove)){
                             unset($cart[$toRemove]);
-                            setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/");
+                            setcookie($cookieName, serialize($cart), time() + (86400 * 30), "/", "chinookabridged-env-1.eba-ap8rbted.us-east-1.elasticbeanstalk.com", false, true);
                         }
                         $totalprice = 0;
                         $trackIndex = 0;

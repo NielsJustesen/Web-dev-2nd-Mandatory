@@ -62,7 +62,6 @@ $(document).ready(function(){
     
 
     $(".songQuantInput").on("change", function(e){
-        // let id = e.target.offsetParent.parentNode.id;
         let id = e.target.id;
         quantity = parseFloat($("#"+id)[0].value);
         for (let i = 0; i < cartItems.length; i++) {
@@ -92,12 +91,10 @@ $(document).ready(function(){
             "total": parseFloat(TotalInvoicePrice(cartItems))
         };
         $.ajax({
-            url: baseUrl+extInvoices,//"http://localhost/Chinook-Abridged-rest-api/invoices",
+            url: baseUrl+extInvoices,
             type: "POST",
             data: invoiceData
         }).done(function(response){
-
-            // alert("----SUCCESS---- INVOICE " + JSON.stringify(response));
 
             const invoiceID = response.InvoiceId;
             let async_request= [];
@@ -118,7 +115,7 @@ $(document).ready(function(){
             for(i in requestBodies)
             {
                 async_request.push($.ajax({
-                    url: baseUrl+extInvoiceLines,//"http://localhost/Chinook-Abridged-rest-api/invoicelines",
+                    url: baseUrl+extInvoiceLines,
                     method: "POST",
                     data: requestBodies[i]
                 }).done(function(response){
@@ -209,7 +206,7 @@ $(document).ready(function(){
 
     function UpdateRequest(formData){
         $.ajax({
-            url: baseUrl+extCustomers,//"http://localhost/Chinook-Abridged-rest-api/customers",
+            url: baseUrl+extCustomers,
             type: "PUT",
             data: JSON.stringify(formData)
         })
@@ -236,7 +233,7 @@ $(document).ready(function(){
             item.name = name;
 
             $.ajax({
-                url: baseUrl+extTracks+"?name="+element.innerText,//"http://localhost/Chinook-Abridged-rest-api/tracks?name="+element.innerText,
+                url: baseUrl+extTracks+"?name="+element.innerText,
                 type: "GET"
             }).done(function(response){
                 item.price = parseFloat(response["UnitPrice"]);
