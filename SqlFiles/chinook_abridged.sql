@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `chinook_abridged`
 --
+DROP DATABASE IF EXISTS chinook_abridged;
 CREATE DATABASE IF NOT EXISTS `chinook_abridged` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `chinook_abridged`;
 
