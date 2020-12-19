@@ -15,6 +15,7 @@
         public $fax;
         
         protected $pdo;
+
         //Connect to the DB
         public function __construct() {
             $server = "chinookabridgeddb.cxypwdfo5x68.us-east-1.rds.amazonaws.com";
